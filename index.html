@@ -3,47 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LlamaPReview - GitHub PR Review Assistant</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <title>LlamaPReview - AI-Powered GitHub PR Review Assistant</title>
+    <meta name="description" content="LlamaPReview is an advanced GitHub App that revolutionizes the pull request review process using AI-powered insights.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0366d6;
+            --secondary-color: #28a745;
+            --background-color: #f6f8fa;
+            --text-color: #24292e;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #f0f0f0;
+        }
+        .features {
+            padding: 4rem 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .feature-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .how-it-works {
+            background-color: white;
+            padding: 4rem 0;
+        }
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .step-item {
+            text-align: center;
+        }
+        .step-item .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            line-height: 30px;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 4rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .feature-grid, .step-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-    <header class="bg-blue-600 text-white p-4">
-        <div class="container mx-auto">
-            <h1 class="text-3xl font-bold">LlamaPReview</h1>
-            <p class="text-xl">Your AI-Powered GitHub PR Review Assistant</p>
-        </div>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="logo.png" alt="LlamaPReview Logo" height="40">
+            </div>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="https://github.com/apps/llamapreview" target="_blank">GitHub App</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="container mx-auto mt-8 p-4">
-        <section id="features" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Features</h2>
-            <ul class="list-disc list-inside">
-                <li>AI-powered code review suggestions</li>
-                <li>Automatic PR summary generation</li>
-                <li>Integration with GitHub workflow</li>
-                <li>Customizable review rules</li>
-            </ul>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>LlamaPReview: Your AI-Powered GitHub PR Review Assistant</h1>
+                <p>Revolutionize your pull request review process with advanced AI insights and automated code analysis.</p>
+                <a href="https://github.com/apps/llamapreview" class="cta-button">Install Now</a>
+            </div>
         </section>
 
-        <section id="how-it-works" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">How It Works</h2>
-            <p>LlamaPReview seamlessly integrates with your GitHub repositories, providing intelligent insights and suggestions for your pull requests.</p>
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-search"></i>
+                        <h3>Holistic Code Analysis</h3>
+                        <p>Reviews entire repository context, including related code, issues, and documentation.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-robot"></i>
+                        <h3>AI-Generated Insights</h3>
+                        <p>Delivers in-depth review comments, enhancing human review efficiency.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fab fa-github"></i>
+                        <h3>Seamless GitHub Integration</h3>
+                        <p>Works natively within your GitHub workflow for a smooth experience.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Customizable Review Rules</h3>
+                        <p>Adapt to your team's specific coding standards and practices.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="get-started" class="mb-12">
-            <h2 class="text-2xl font-bold mb-4">Get Started</h2>
-            <p>Visit the GitHub Marketplace to install LlamaPReview for your repositories.</p>
-            <a href="https://github.com/apps/llamapreview" class="bg-blue-600 text-white px-4 py-2 rounded mt-4 inline-block">Install Now</a>
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2>How It Works</h2>
+                <div class="step-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Install</h3>
+                        <p>Add LlamaPReview to your GitHub repositories from the Marketplace.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>Analyze</h3>
+                        <p>LlamaPReview automatically analyzes new PRs using advanced LLM technology.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Review</h3>
+                        <p>Receive detailed, AI-generated review comments on each PR.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h3>Improve</h3>
+                        <p>Use insights to streamline your review process and improve code quality.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white p-4 mt-12">
-        <div class="container mx-auto text-center">
+    <footer>
+        <div class="container">
             <p>&copy; 2024 LlamaPReview. All rights reserved.</p>
+            <p>
+                <a href="customer-support.html">Customer Support</a> |
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
