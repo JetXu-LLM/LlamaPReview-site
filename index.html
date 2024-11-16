@@ -137,6 +137,80 @@
                 grid-template-columns: 1fr;
             }
         }
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .impact {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .impact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .impact-item i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .impact-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-color);
+        }
+        
+        .impact-content p {
+            margin: 0;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg" />
 </head>
@@ -158,6 +232,16 @@
         <section class="hero">
             <div class="container">
                 <h1>LlamaPReview: Your AI-Powered GitHub Code Review Assistant</h1>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <span class="stat-number">2,000+</span>
+                        <span class="stat-label">Active Repositories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">16,000+</span>
+                        <span class="stat-label">Combined Repository Stars</span>
+                    </div>
+                </div>
                 <p><b>Only 1-Click Install, currently Full Free, All auto running</b> - Revolutionize your pull request review process with advanced AI insights and automated code analysis.</p>
                 <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install Now</a>
             </div>
@@ -186,6 +270,28 @@
                         <i class="fas fa-cogs"></i>
                         <h3>Customizable Review Rules</h3>
                         <p>Adapt to your team's specific coding standards and practices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="impact">
+            <div class="container">
+                <h2>Community Impact</h2>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <i class="fas fa-code-branch"></i>
+                        <div class="impact-content">
+                            <h3>Growing Developer Community</h3>
+                            <p>Trusted by <b>2,000+</b> repositories across GitHub, from individual developers to large-scale projects.</p>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-star"></i>
+                        <div class="impact-content">
+                            <h3>Proven in Production</h3>
+                            <p>Supporting repositories with a combined <b>16,000+</b> stars, helping maintain code quality at scale.</p>
+                        </div>
                     </div>
                 </div>
             </div>
