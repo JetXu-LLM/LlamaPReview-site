@@ -211,6 +211,42 @@
                 grid-template-columns: 1fr;
             }
         }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .impact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .impact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
     </style>
     <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg" />
 </head>
@@ -223,6 +259,7 @@
             <ul>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a></li>
                 <li><a href="https://github.com/apps/llamapreview" target="_blank">GitHub App</a></li>
             </ul>
         </nav>
@@ -243,7 +280,10 @@
                     </div>
                 </div>
                 <p><b>Only 1-Click Install, currently Full Free, All auto running</b> - Revolutionize your pull request review process with advanced AI insights and automated code analysis.</p>
-                <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install Now</a>
+                <div class="cta-buttons">
+                    <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install Now</a>
+                    <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" class="cta-button secondary" target="_blank">Join Community</a>
+                </div>
             </div>
         </section>
 
@@ -293,6 +333,13 @@
                             <p>Supporting repositories with a combined <b>16,000+</b> stars, helping maintain code quality at scale.</p>
                         </div>
                     </div>
+                    <div class="impact-item">
+                        <i class="fas fa-comments"></i>
+                        <div class="impact-content">
+                            <h3>Join Our Community</h3>
+                            <p>Share ideas, get help, and connect with other developers in our <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">GitHub Discussions</a>.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -330,6 +377,7 @@
         <div class="container">
             <p>&copy; 2024 LlamaPReview. All rights reserved.</p>
             <p>
+                <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a> |
                 <a href="./customer_support.html">Customer Support</a> |
                 <a href="./privacy.html">Privacy Policy</a>
             </p>
