@@ -25,6 +25,9 @@
             padding: 15px;
             margin: 15px 0;
         }
+        .sub-list {
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
@@ -49,9 +52,9 @@
             <strong>Important Notice About Code Processing:</strong>
             <p>LlamaPReview processes your repository code with the following privacy measures:</p>
             <ul>
-                <li>Code is temporarily held in memory for analysis purposes</li>
-                <li>All code processing occurs in isolated, secure environments</li>
-                <li>No repository code is persisted to permanent storage</li>
+                <li>Code is temporarily held in memory for analysis purposes only.</li>
+                <li>All code processing occurs in isolated, secure environments.</li>
+                <li>No repository code is ever persisted to permanent storage by LlamaPReview.</li>
             </ul>
         </div>
     </div>
@@ -60,11 +63,11 @@
         <h2>3. How We Use Your Information</h2>
         <p>We use the collected information solely for:</p>
         <ul>
-            <li>Providing automated code review services through our AI system</li>
-            <li>Generating and posting review comments on your pull requests</li>
-            <li>Improving our service based on anonymized usage patterns</li>
-            <li>Ensuring proper operation and security of the service</li>
-            <li>Communicating essential service updates</li>
+            <li>Providing automated code review services through our AI system.</li>
+            <li>Generating and posting review comments on your pull requests.</li>
+            <li>Improving our service based on anonymized usage patterns.</li>
+            <li>Ensuring proper operation and security of the service.</li>
+            <li>Communicating essential service updates.</li>
         </ul>
     </div>
     
@@ -72,52 +75,60 @@
         <h2>4. Data Protection and Processing</h2>
         <p>We implement comprehensive security measures to protect your data:</p>
         <ul>
-            <li>End-to-end encryption for all data in transit</li>
-            <li>Secure, ephemeral processing environments for code analysis</li>
-            <li>Regular security audits and updates</li>
-            <li>Strict access controls and authentication mechanisms</li>
-            <li>Compliance with GitHub's security best practices</li>
+            <li>End-to-end encryption for all data in transit.</li>
+            <li>Secure, ephemeral processing environments for code analysis hosted on AWS.</li>
+            <li>Regular security audits and updates.</li>
+            <li>Strict access controls and authentication mechanisms.</li>
+            <li>Compliance with GitHub's security best practices.</li>
         </ul>
-        <p>To provide our AI-powered code review service, we utilize industry-leading third-party AI services. This means:</p>
-        <ul>
-            <li>Your code may be processed by trusted third-party AI service providers who maintain the highest standards of security and privacy</li>
-            <li>These providers are bound by strict data protection agreements and maintain SOC 2 compliance</li>
-            <li>All code processing occurs through secure, encrypted connections</li>
-            <li>The AI services we use do not retain or store your code after processing</li>
-        </ul>
+
+        <div class="important-notice">
+            <strong>AI Model Usage and Data Processing Transparency:</strong>
+            <p>To provide a sustainable and powerful service, we use different AI models depending on your repository's visibility. In all cases, your code is used exclusively to generate the review and is **never used for training AI models.**</p>
+            <ul>
+                <li><strong>For Private (Closed-Source) Repositories:</strong> Your code is processed exclusively by leading AI service providers such as **Mistral AI** or **Google (Gemini API)**. These providers are selected for their stringent security and privacy commitments and are bound by strict data protection agreements.</li>
+                <li><strong>For Public (Open-Source) Repositories:</strong> To offer powerful features to the open-source community at a sustainable cost, your code may be processed by the **DeepSeek LLM API**, in addition to the providers mentioned above. As this code is already publicly accessible, this allows for a different cost structure while still maintaining secure processing.</li>
+            </ul>
+            <p>All AI providers we partner with are contractually obligated not to retain or store your code after processing is complete.</p>
+        </div>
     </div>
     
     <div class="policy-section">
         <h2>5. Data Retention</h2>
         <p>Our data retention policy is designed to minimize data storage:</p>
         <ul>
-            <li>Repository code: Temporarily held in memory for efficient processing</li>
-            <li>PR metadata: Retained only while the PR is active</li>
-            <li>Installation data: Retained only while the app remains installed</li>
-            <li>Usage analytics: Anonymized after 30 days</li>
+            <li>Repository code: Not stored. Temporarily held in memory for processing only.</li>
+            <li>PR metadata: Retained only while the PR is active.</li>
+            <li>Installation data: Retained only while the app remains installed.</li>
+            <li>Usage analytics: Anonymized after 30 days.</li>
         </ul>
     </div>
     
     <div class="policy-section">
-        <h2>6. Third-Party Services</h2>
-        <p>LlamaPReview integrates with:</p>
+        <h2>6. Third-Party Services (Sub-processors)</h2>
+        <p>LlamaPReview integrates with the following third-party services to function:</p>
         <ul>
-            <li>GitHub (primary platform integration)</li>
-            <li>AWS (for secure, serverless processing)</li>
-            <li>Enterprise-grade AI service providers for code analysis (all of whom maintain industry-standard security certifications and compliance)</li>
+            <li><strong>GitHub:</strong> For primary platform integration and authentication.</li>
+            <li><strong>Amazon Web Services (AWS):</strong> For all secure, serverless processing and infrastructure, hosted exclusively in the **ap-southeast-1 (Singapore)** region.</li>
+            <li><strong>AI Service Providers:</strong>
+                <ul class="sub-list">
+                    <li><strong>Mistral AI & Google (Gemini API):</strong> Used for processing code from private (closed-source) repositories.</li>
+                    <li><strong>DeepSeek:</strong> Used for processing code from public (open-source) repositories.</li>
+                </ul>
+            </li>
         </ul>
         <p>Please refer to these services' respective privacy policies for additional information about their data handling practices.</p>
     </div>
     
     <div class="policy-section">
         <h2>7. Your Rights</h2>
-        <p>Under applicable privacy laws, you have the right to:</p>
+        <p>Under applicable privacy laws (such as GDPR), you have the right to:</p>
         <ul>
-            <li>Access your personal information</li>
-            <li>Request correction or deletion of your data</li>
-            <li>Restrict or object to processing</li>
-            <li>Export your data (data portability)</li>
-            <li>Withdraw consent at any time</li>
+            <li>Access your personal information.</li>
+            <li>Request correction or deletion of your data.</li>
+            <li>Restrict or object to processing.</li>
+            <li>Export your data (data portability).</li>
+            <li>Withdraw consent at any time by uninstalling the app.</li>
         </ul>
         <p>To exercise these rights, please contact us at Jiantong.xu@foxmail.com.</p>
     </div>
@@ -134,8 +145,8 @@
     </div>
     
     <footer>
-        <p>Last updated: November 9, 2024</p>
-        <p>&copy; 2024 LlamaPReview. All rights reserved.</p>
+        <p>Last updated: August 25, 2025</p>
+        <p>&copy; 2024-2025 LlamaPReview. All rights reserved.</p>
     </footer>
 </body>
 </html>
