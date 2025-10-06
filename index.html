@@ -20,6 +20,7 @@
             --secondary-color: #28a745;
             --background-color: #f6f8fa;
             --text-color: #24292e;
+            --accent-color: #f59e0b;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -44,7 +45,7 @@
             justify-content: space-between;
             align-items: center;
         }
-            nav ul {
+        nav ul {
             list-style-type: none;
             padding: 0;
             display: flex;
@@ -80,11 +81,13 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
             border: 2px solid white;
         }
         .cta-button:hover {
             background-color: #f0f0f0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         .features {
             padding: 4rem 0;
@@ -238,6 +241,149 @@
         footer a:hover {
             text-decoration: underline;
         }
+        
+        /* Pricing Section Styles */
+        .pricing {
+            padding: 4rem 0;
+            background-color: white;
+        }
+        .pricing h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        .pricing-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .pricing-card {
+            background: white;
+            border: 2px solid #e1e4e8;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        .pricing-card.featured {
+            border-color: var(--accent-color);
+            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 1rem 0;
+        }
+        .pricing-card .price-period {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+        .pricing-card .description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            min-height: 3rem;
+        }
+        .pricing-features {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        .pricing-features li {
+            list-style: none;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        .pricing-features li i {
+            color: var(--secondary-color);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+        .pricing-features li.disabled {
+            color: #ccc;
+        }
+        .pricing-features li.disabled i {
+            color: #ccc;
+        }
+        .pricing-cta {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .pricing-cta:hover {
+            background-color: #0256c7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .pricing-card.featured .pricing-cta {
+            background-color: var(--accent-color);
+        }
+        .pricing-card.featured .pricing-cta:hover {
+            background-color: #d97706;
+        }
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            .pricing-card.featured:hover {
+                transform: translateY(-5px);
+            }
+        }
     </style>
     <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg" />
 </head>
@@ -249,6 +395,7 @@
             </div>
             <ul>
                 <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a></li>
                 <li><a href="https://github.com/apps/llamapreview" target="_blank">GitHub App</a></li>
@@ -275,6 +422,7 @@
                 </div>
             </div>
         </section>
+        
         <section id="features" class="features">
             <div class="container">
                 <h2>Key Features</h2>
@@ -302,6 +450,87 @@
                 </div>
             </div>
         </section>
+
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2>Choose Your Edition</h2>
+                <p class="pricing-subtitle">All editions are <strong>free for public repositories</strong>. Private repos start with Community features at no cost.</p>
+                
+                <div class="pricing-grid">
+                    <!-- Community Edition -->
+                    <div class="pricing-card">
+                        <h3>Community</h3>
+                        <div class="price">
+                            $0
+                            <span class="price-period">forever</span>
+                        </div>
+                        <p class="description">Powerful AI-powered PR reviews for all users</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span>Unlimited AI-powered PR reviews</span></li>
+                            <li><i class="fas fa-check"></i> <span>All major programming languages</span></li>
+                            <li><i class="fas fa-check"></i> <span>Seamless GitHub integration</span></li>
+                            <li><i class="fas fa-check"></i> <span>1-click install & full auto review</span></li>
+                            <li><i class="fas fa-check"></i> <span>Evidence-backed findings</span></li>
+                            <li><i class="fas fa-check"></i> <span>Rich-text reviews with collapsible sections</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span>Inline code suggestions</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span>Mermaid diagrams</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span>Advanced context retrieval</span></li>
+                        </ul>
+                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Get Started Free</a>
+                    </div>
+
+                    <!-- Advanced Edition - Featured -->
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">✨ MOST POPULAR</div>
+                        <h3>Advanced</h3>
+                        <div class="price">
+                            $0
+                            <span class="price-period">for public repos</span>
+                        </div>
+                        <p class="description">Rich visualizations & inline suggestions for complex PRs</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span><strong>Everything in Community</strong></span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>Automatic Mermaid diagrams</strong> for architecture visualization</span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>Inline code suggestions</strong> on changed lines</span></li>
+                            <li><i class="fas fa-check"></i> <span>Advanced context retrieval with deeper dependency analysis</span></li>
+                            <li><i class="fas fa-check"></i> <span>Triggered automatically for complex PRs</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span>Customizable review rules</span></li>
+                            <li class="disabled"><i class="fas fa-times"></i> <span>Zero-knowledge private repo support</span></li>
+                        </ul>
+                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Get Started Free</a>
+                    </div>
+
+                    <!-- Professional Edition -->
+                    <div class="pricing-card">
+                        <div class="pricing-badge">🚀 20% OFF - FIRST 100</div>
+                        <h3>Professional</h3>
+                        <div class="price">
+                            TBA
+                            <span class="price-period">coming soon</span>
+                        </div>
+                        <p class="description">Enterprise-grade for private repos with full customization</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> <span><strong>Everything in Advanced</strong></span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>Private repository support</strong> with zero-knowledge storage</span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>Self-adaptive review style</strong> learned from your team</span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>Customizable review rules</strong> and prompts</span></li>
+                            <li><i class="fas fa-check"></i> <span>Advanced AI engines (Gemini 2.5, GPT-5)</span></li>
+                            <li><i class="fas fa-check"></i> <span>PR statistics dashboard</span></li>
+                            <li><i class="fas fa-check"></i> <span>Priority support</span></li>
+                            <li><i class="fas fa-check"></i> <span><strong>First 100 members: 20% lifetime discount</strong></span></li>
+                        </ul>
+                        <a href="https://tally.so/r/n0Nxx9" class="pricing-cta">Join Waitlist & Save 20%</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem; padding: 1.5rem; background-color: #eef4ff; border-radius: 8px; border: 1px solid #cce0ff;">
+                    <h3 style="margin-top: 0; color: var(--primary-color);">✨ Free Advanced Trial on Every Repo</h3>
+                    <p style="font-size: 1.1rem; color: #333; max-width: 650px; margin: 0.5rem auto 0 auto;">
+                        To let you experience the full power of LlamaPReview, your <strong>first 3 pull requests</strong> on any new repository will automatically receive a full-featured <em>Advanced</em> review!
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="impact" class="impact">
             <div class="container">
                 <h2>Community Impact</h2>
@@ -330,6 +559,7 @@
                 </div>
             </div>
         </section>
+        
         <section id="how-it-works" class="how-it-works">
             <div class="container">
                 <h2>How It Works</h2>
