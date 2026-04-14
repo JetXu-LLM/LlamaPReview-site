@@ -35,7 +35,11 @@
     
     <div class="policy-section">
         <h2>1. Introduction</h2>
-        <p>This Privacy Policy explains how LlamaPReview ("we", "our", or "us") collects, uses, and protects your information when you use our GitHub App. We are committed to ensuring the privacy and security of your data while providing AI-powered code review services. This policy is designed to comply with global privacy regulations including GDPR and CCPA.</p>
+        <p>This Privacy Policy explains how LlamaPReview ("we", "our", or "us") collects, uses, and protects your information when you use our GitHub App for public open-source repositories.</p>
+        <div class="important-notice">
+            <strong>Service Notice:</strong>
+            <p>From <strong>May 1, 2026 00:00:00 UTC</strong>, free reviews for private repositories are paused. LlamaPReview Advanced remains available for public open-source repositories.</p>
+        </div>
     </div>
     
     <div class="policy-section">
@@ -44,7 +48,7 @@
         <ul>
             <li>GitHub installation ID and account information (as provided by GitHub OAuth)</li>
             <li>Repository metadata (repository names, PR numbers, and associated metadata)</li>
-            <li>Pull request content for analysis</li>
+            <li>Pull request content from public open-source repositories for analysis</li>
             <li>Basic usage analytics (frequency of PR reviews, feature usage patterns)</li>
         </ul>
         
@@ -55,6 +59,7 @@
                 <li>Code is temporarily held in memory for analysis purposes only.</li>
                 <li>All code processing occurs in isolated, secure environments.</li>
                 <li>No repository code is ever persisted to permanent storage by LlamaPReview.</li>
+                <li>Repository content is not used to train AI models.</li>
             </ul>
         </div>
     </div>
@@ -84,12 +89,12 @@
 
         <div class="important-notice">
             <strong>AI Model Usage and Data Processing Transparency:</strong>
-            <p>To provide a sustainable and powerful service, we use different AI models depending on your repository's visibility. In all cases, your code is used exclusively to generate the review and is **never used for training AI models.**</p>
+            <p>LlamaPReview currently provides automated review for public open-source repositories. In all cases, repository content is used only to generate the review and is <strong>never used for training AI models</strong>.</p>
             <ul>
-                <li><strong>For Private (Closed-Source) Repositories:</strong> Your code is processed exclusively by leading AI service providers such as **Mistral AI** or **Google (Gemini API)**. These providers are selected for their stringent security and privacy commitments and are bound by strict data protection agreements.</li>
-                <li><strong>For Public (Open-Source) Repositories:</strong> To offer powerful features to the open-source community at a sustainable cost, your code may be processed by the **DeepSeek LLM API**, in addition to the providers mentioned above. As this code is already publicly accessible, this allows for a different cost structure while still maintaining secure processing.</li>
+                <li><strong>For Public (Open-Source) Repositories:</strong> Repository content may be processed by AI providers used by the public LlamaPReview service, including DeepSeek and selected supporting providers, to generate review output.</li>
+                <li><strong>For Private Repositories:</strong> Free review service is paused from <strong>May 1, 2026 00:00:00 UTC</strong>.</li>
             </ul>
-            <p>All AI providers we partner with are contractually obligated not to retain or store your code after processing is complete.</p>
+            <p>We expect our providers to process repository content only for the requested review task and not to use it for model training.</p>
         </div>
     </div>
     
@@ -112,8 +117,7 @@
             <li><strong>Amazon Web Services (AWS):</strong> For all secure, serverless processing and infrastructure, hosted exclusively in the **ap-southeast-1 (Singapore)** region.</li>
             <li><strong>AI Service Providers:</strong>
                 <ul class="sub-list">
-                    <li><strong>Mistral AI & Google (Gemini API):</strong> Used for processing code from private (closed-source) repositories.</li>
-                    <li><strong>DeepSeek:</strong> Used for processing code from public (open-source) repositories.</li>
+                    <li><strong>DeepSeek and selected supporting providers:</strong> Used for processing public open-source repository content for review generation.</li>
                 </ul>
             </li>
         </ul>
@@ -135,7 +139,7 @@
     
     <div class="policy-section">
         <h2>8. Changes to This Policy</h2>
-        <p>We may update this privacy policy to reflect changes in our practices or for legal compliance. We will notify users of any material changes via email or through the GitHub App interface.</p>
+        <p>We may update this policy to reflect changes in the service or for legal compliance. Material changes will be reflected on this page.</p>
     </div>
     
     <div class="policy-section">
@@ -145,8 +149,8 @@
     </div>
     
     <footer>
-        <p>Last updated: August 25, 2025</p>
-        <p>&copy; 2024-2025 LlamaPReview. All rights reserved.</p>
+        <p>Last updated: April 14, 2026</p>
+        <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
     </footer>
 </body>
 </html>

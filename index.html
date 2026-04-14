@@ -11,8 +11,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LlamaPReview - Evidence-Based AI GitHub Code Review Assistant</title>
-    <meta name="description" content="LlamaPReview delivers evidence-based, low-noise AI pull request reviews with context retrieval and severity gating. Free and zero configuration.">
+    <title>LlamaPReview - Public Open-Source AI Code Review</title>
+    <meta name="description" content="LlamaPReview delivers evidence-based, low-noise AI pull request reviews for public open-source repositories. Free reviews for private repositories pause on May 1, 2026 00:00:00 UTC.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -373,6 +373,72 @@
         .pricing-card.featured .pricing-cta:hover {
             background-color: #d97706;
         }
+        .service-update-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+        .update-panel {
+            background: #f6f8fa;
+            border: 1px solid #d8dee4;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+        }
+        .update-panel h3 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .update-panel p {
+            margin-top: 0;
+            color: #57606a;
+        }
+        .update-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0 0;
+        }
+        .update-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            margin-bottom: 1rem;
+            color: #24292e;
+        }
+        .update-list li i {
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+        .update-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.75rem;
+        }
+        .secondary-link {
+            display: inline-block;
+            background: white;
+            color: var(--text-color);
+            border: 1px solid #d0d7de;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .secondary-link:hover {
+            background: #f6f8fa;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        .update-note {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #57606a;
+        }
         @media (max-width: 968px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -383,9 +449,9 @@
             .pricing-card.featured:hover {
                 transform: translateY(-5px);
             }
-        }
-        .free-trial-wrap p {
-            max-width: 960px !important;
+            .service-update-layout {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg" />
@@ -398,7 +464,7 @@
             </div>
             <ul>
                 <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#service-update">Service Update</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
                 <li><a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a></li>
                 <li><a href="https://github.com/apps/llamapreview" target="_blank">GitHub App</a></li>
@@ -408,7 +474,7 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Evidence-Based AI Code Review for Maintainers</h1>
+                <h1>Evidence-Based AI Code Review for Public Open-Source Repositories</h1>
                 <div class="stats-container">
                     <div class="stat-item">
                         <span class="stat-number">4,000+</span>
@@ -419,9 +485,9 @@
                         <span class="stat-label">Combined Repository Stars</span>
                     </div>
                 </div>
-                <p><b>1‑Click install • Zero config • Free</b> — Context retrieval + severity gating deliver low‑noise, high‑impact PR insights you can trust.</p>
+                <p><b>1‑Click install • Zero config • Free for public open-source repositories</b> — Context retrieval + severity gating deliver low-noise, high-impact PR insights you can trust.</p>
                 <div class="cta-buttons">
-                    <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install Now</a>
+                    <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install for Public Repos</a>
                 </div>
             </div>
         </section>
@@ -454,85 +520,45 @@
             </div>
         </section>
 
-        <section id="pricing" class="pricing">
+        <section id="service-update" class="pricing">
             <div class="container">
-                <h2>Choose Your Edition</h2>
-                <p class="pricing-subtitle">All editions are <strong>free for public repositories</strong>. Private repos start with Community features at no cost.</p>
-                
-                <div class="pricing-grid">
-                    <!-- Community Edition -->
-                    <div class="pricing-card">
-                        <h3>Community</h3>
-                        <div class="price">
-                            $0
-                            <span class="price-period">forever</span>
-                        </div>
-                        <p class="description">Powerful AI-powered PR reviews for all users</p>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> <span>Unlimited AI-powered PR reviews</span></li>
-                            <li><i class="fas fa-check"></i> <span>All major programming languages</span></li>
-                            <li><i class="fas fa-check"></i> <span>Seamless GitHub integration</span></li>
-                            <li><i class="fas fa-check"></i> <span>1-click install & full auto review</span></li>
-                            <li><i class="fas fa-check"></i> <span>Evidence-backed findings</span></li>
-                            <li><i class="fas fa-check"></i> <span>Rich-text reviews with collapsible sections</span></li>
-                            <li class="disabled"><i class="fas fa-times"></i> <span>Inline code suggestions</span></li>
-                            <li class="disabled"><i class="fas fa-times"></i> <span>Mermaid diagrams</span></li>
-                            <li class="disabled"><i class="fas fa-times"></i> <span>Advanced context retrieval</span></li>
+                <h2>Service Update</h2>
+                <p class="pricing-subtitle">A direct update from the LlamaPReview team.</p>
+
+                <div class="service-update-layout">
+                    <div class="update-panel">
+                        <h3>Thank you for staying with us</h3>
+                        <p>LlamaPReview reached thousands of repositories because maintainers gave it a real chance. We do not take that trust lightly.</p>
+                        <ul class="update-list">
+                            <li><i class="fas fa-heart"></i><span>We are deeply grateful for the support, feedback, and recognition this project has received.</span></li>
+                            <li><i class="fas fa-clock"></i><span>From <strong>May 1, 2026 00:00:00 UTC</strong>, free reviews for private repositories will pause.</span></li>
+                            <li><i class="fas fa-code-branch"></i><span><strong>LlamaPReview Advanced</strong> will remain free for public open-source repositories, and that service stays unchanged.</span></li>
+                            <li><i class="fas fa-arrow-right"></i><span>We will not continue LlamaPReview as a broader product. If you'd like to see our current open-source focus, you're welcome to take a look at <a href="https://github.com/JetXu-LLM/DocMason" target="_blank">DocMason</a>.</span></li>
                         </ul>
-                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Get Started Free</a>
+                        <div class="update-actions">
+                            <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install for Public Repos</a>
+                            <a href="https://github.com/JetXu-LLM/DocMason" class="secondary-link" target="_blank">See DocMason</a>
+                        </div>
+                        <p class="update-note">DocMason is not a replacement for LlamaPReview. It is simply the current open-source focus from the same author.</p>
                     </div>
 
-                    <!-- Advanced Edition - Featured -->
                     <div class="pricing-card featured">
-                        <div class="pricing-badge">✨ MOST POPULAR</div>
-                        <h3>Advanced</h3>
+                        <div class="pricing-badge">ACTIVE</div>
+                        <h3>Advanced Edition</h3>
                         <div class="price">
                             $0
-                            <span class="price-period">for public repos</span>
+                            <span class="price-period">for public repositories</span>
                         </div>
-                        <p class="description">Deep-context analysis that powers richer insights—visualizations and precise inline suggestions—on complex PRs.</p>
+                        <p class="description">Deep-context analysis for public open-source pull requests, with the same low-noise review focus.</p>
                         <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> <span><strong>Everything in Community</strong></span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Core Deep-Context Analysis</strong> with deeper dependency and cross-file reasoning</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Automatic Mermaid diagrams</strong> that reflect architectural impacts</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Inline code suggestions</strong> tuned by contextual evidence</span></li>
-                            <li><i class="fas fa-check"></i> <span>Triggered automatically for complex PRs</span></li>
-                            <li class="disabled"><i class="fas fa-times"></i> <span>Customizable review rules</span></li>
-                            <li class="disabled"><i class="fas fa-times"></i> <span>Zero-knowledge private repo support</span></li>
+                            <li><i class="fas fa-check"></i> <span>Evidence-backed PR reviews</span></li>
+                            <li><i class="fas fa-check"></i> <span>Deeper cross-file reasoning on complex changes</span></li>
+                            <li><i class="fas fa-check"></i> <span>Inline suggestions and Mermaid diagrams when needed</span></li>
+                            <li><i class="fas fa-check"></i> <span>Automatic routing for larger public open-source PRs</span></li>
+                            <li><i class="fas fa-check"></i> <span>No change to the public open-source install flow</span></li>
                         </ul>
-                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Get Started Free</a>
+                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Install from GitHub Marketplace</a>
                     </div>
-
-                    <!-- Professional Edition -->
-                    <div class="pricing-card">
-                        <div class="pricing-badge">🚀 20% OFF - FIRST 100</div>
-                        <h3>Professional</h3>
-                        <div class="price">
-                            TBA
-                            <span class="price-period">coming soon</span>
-                        </div>
-                        <p class="description">Enterprise-grade private repo intelligence with zero-knowledge security and full customization.</p>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> <span><strong>Everything in Advanced</strong></span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Secure Code-Knowledge Graph</strong>: classes, methods, dependencies, and call graphs for powerful semantic analysis</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Zero-Knowledge Code Storage</strong>: code content is never stored; only cryptographic fingerprints persist</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Cryptographic Blind Indexing</strong> with HMAC‑SHA256 and repo‑scoped salts for irreversible matching</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Self-adaptive review style</strong> learned from your team</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>Customizable review rules</strong> and prompts</span></li>
-                            <li><i class="fas fa-check"></i> <span>Advanced AI engines (Gemini 2.5, GPT-5)</span></li>
-                            <li><i class="fas fa-check"></i> <span>PR statistics dashboard</span></li>
-                            <li><i class="fas fa-check"></i> <span>Priority support</span></li>
-                            <li><i class="fas fa-check"></i> <span><strong>First 100 members: 20% lifetime discount</strong></span></li>
-                        </ul>
-                        <a href="https://tally.so/r/n0Nxx9" class="pricing-cta">Join Waitlist & Save 20%</a>
-                    </div>
-                </div>
-
-                <div class="free-trial-wrap" style="text-align: center; margin-top: 3rem; padding: 1.5rem 2rem; background-color: #eef4ff; border-radius: 8px; border: 1px solid #cce0ff;">
-                    <h3 style="margin-top: 0; color: var(--primary-color); font-size: 1.4rem;">✨ Free Advanced Trial for Private Repos</h3>
-                    <p style="font-size: 1.1rem; color: #333; margin: 0.5rem auto 0 auto;">
-                        To help you evaluate, your <strong>new private repositories</strong> with a Community Edition subscription will automatically get a <strong>full-featured <em>Advanced</em> review for the first 3 pull requests</strong>. It's the perfect way to experience how our <strong>core deep-context analysis</strong> drives richer architectural understanding and more precise inline suggestions—before joining the Professional waitlist.
-                    </p>
                 </div>
             </div>
         </section>
@@ -596,7 +622,7 @@
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2024 LlamaPReview. All rights reserved.</p>
+            <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
             <p>
                 <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a> |
                 <a href="./customer_support.html">Customer Support</a> |
