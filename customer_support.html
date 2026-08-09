@@ -29,43 +29,50 @@
     </style>
 </head>
 <body>
-    <h1>LlamaPReview Customer Support</h1>
-    
+    <p><a href="./index.html">← Back to LlamaPReview</a></p>
+    <h1>LlamaPReview Support</h1>
+
     <div class="support-section">
-        <h2>Welcome to LlamaPReview Support</h2>
-        <p>Thank you for embarking on this incredible journey with us. We've witnessed over 4,000 repositories and 527 subscriptions trust LlamaPReview, which has been incredibly heartwarming.</p>
-        <p>As the AI coding ecosystem shifts dramatically towards autonomous "Vibe Coding" paradigms, we've had to make the difficult decision to step back from our original trajectory, acknowledging that the code review SaaS model as it stands has outlived its time.</p>
-        <p>Please note: While LlamaPReview Advanced remains fully operational and absolutely free for public open-source repositories, our free reviews for private repositories will permanently pause on <strong>May 1, 2026 00:00:00 UTC</strong>.</p>
+        <p>LlamaPReview is an actively maintained, open-source GitHub pull-request reviewer. The hosted service reviews public repositories only and is free for public repositories. This page explains where to take usage questions, reproducible problems, review-quality feedback, and security reports.</p>
     </div>
-    
+
     <div class="support-section">
         <h2>Frequently Asked Questions</h2>
-        <h3>Q: How do I install LlamaPReview?</h3>
-        <p>A: You can install LlamaPReview directly from the GitHub Marketplace. Simply visit our <a href="https://github.com/apps/llamapreview">GitHub App page</a> and click on the "Install" button.</p>
-        
-        <h3>Q: Are free reviews for private repositories still supported?</h3>
-        <p>A: No. We will pause free reviews for private repositories starting <strong>May 1, 2026 00:00:00 UTC</strong>.</p>
-        
-        <h3>Q: What is happening to the public open-source service?</h3>
-        <p>A: Nothing changes for public open-source repositories! We will continue to support the open-source community by keeping LlamaPReview Advanced running for free on public repos.</p>
-        
-        <h3>Q: Is LlamaPReview still being developed actively?</h3>
-        <p>A: Sadly, no. The wave of AI advancement has moved us to pivot. If you've loved our review tool and want to see what we're bringing to the new era of generative engineering, we invite you to check out <a href="https://github.com/JetXu-LLM/DocMason">DocMason</a>, our newest open-source endeavor.</p>
+
+        <h3>How do I install LlamaPReview?</h3>
+        <p>Install the <a href="https://github.com/apps/llamapreview">LlamaPReview GitHub App</a> and grant it access to the public repositories you want reviewed.</p>
+
+        <h3>Does the hosted service review private repositories?</h3>
+        <p>No. After verifying the webhook signature and parsing the minimum visibility fields, the hosted service generically acknowledges and discards a private-repository event. It creates no durable product record, calls no model provider, and makes no GitHub product API call for that event.</p>
+
+        <h3>When does a review run?</h3>
+        <p>A review runs for an eligible public pull-request event with a valid webhook signature. Opening a non-draft pull request or marking a draft ready for review are the supported entry points. Every admitted run is pinned to the pull request's exact head commit.</p>
+
+        <h3>Where is the source, and where should I report a bug?</h3>
+        <p>The active source is <a href="https://github.com/JetXu-LLM/LlamaPReview">JetXu-LLM/LlamaPReview</a>. Use <a href="https://github.com/JetXu-LLM/LlamaPReview/issues">Issues</a> for reproducible bugs and concrete work items. Use <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Discussions</a> for questions, ideas, and public review examples.</p>
+
+        <h3>What if a review looks wrong, incomplete, or noisy?</h3>
+        <p>Open a review-quality Issue or Discussion with a public pull-request link, the output in question, and what you expected instead. Share only public or already-redacted evidence; never post private source, provider payloads, installation IDs, secrets, or private logs.</p>
+
+        <h3>How do I report a security problem?</h3>
+        <p>Follow the repository's <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security Policy</a>. Do not file a public Issue for a vulnerability.</p>
+
+        <h3>Can I self-host LlamaPReview?</h3>
+        <p>Yes. The repository contains a generic AWS reference for the same public-repository-only Webhook and Pipeline path. Self-hosters supply their own GitHub App, DeepSeek credentials, AWS account, and operating budget. The current reference does not include a private-repository mode.</p>
     </div>
-    
+
     <div class="support-section">
         <h2>Getting Help</h2>
-        <p>If you need help with the public open-source service, or if you have questions about the service transition, please reach out by email.</p>
-        
         <div class="contact-info">
-            <h3>Contact Information</h3>
-            <p>Email: <a href="mailto:Jiantong.xu@foxmail.com">Jiantong.xu@foxmail.com</a></p>
-            <p>GitHub Discussions: <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions">LlamaPReview Community</a></p>
+            <p><strong>Questions, ideas, and examples:</strong> <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Discussions</a></p>
+            <p><strong>Reproducible bugs and work items:</strong> <a href="https://github.com/JetXu-LLM/LlamaPReview/issues">Issues</a></p>
+            <p><strong>Vulnerabilities:</strong> <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security Policy</a></p>
+            <p><strong>Policies:</strong> <a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a></p>
         </div>
     </div>
-    
+
     <footer>
-        <p>Last updated: April 15, 2026</p>
+        <p>Last updated: August 10, 2026</p>
         <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
     </footer>
 </body>

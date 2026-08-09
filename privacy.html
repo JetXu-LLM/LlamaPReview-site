@@ -28,128 +28,105 @@
         .sub-list {
             margin-left: 20px;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #d0d7de;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background: #f6f8fa;
+        }
     </style>
 </head>
 <body>
+    <p><a href="./index.html">← Back to LlamaPReview</a></p>
     <h1>LlamaPReview Privacy Policy</h1>
-    
-    <div class="policy-section">
-        <h2>1. Introduction</h2>
-        <p>This Privacy Policy explains how LlamaPReview ("we", "our", or "us") collects, uses, and protects your information when you use our GitHub App for public open-source repositories.</p>
-        <div class="important-notice">
-            <strong>Service Notice:</strong>
-            <p>From <strong>May 1, 2026 00:00:00 UTC</strong>, free reviews for private repositories are paused. LlamaPReview Advanced remains available for public open-source repositories.</p>
-        </div>
-    </div>
-    
-    <div class="policy-section">
-        <h2>2. Information We Collect</h2>
-        <p>When you install and use LlamaPReview, we collect only the minimum necessary information to provide our services:</p>
-        <ul>
-            <li>GitHub installation ID and account information (as provided by GitHub OAuth)</li>
-            <li>Repository metadata (repository names, PR numbers, and associated metadata)</li>
-            <li>Pull request content from public open-source repositories for analysis</li>
-            <li>Basic usage analytics (frequency of PR reviews, feature usage patterns)</li>
-        </ul>
-        
-        <div class="important-notice">
-            <strong>Important Notice About Code Processing:</strong>
-            <p>LlamaPReview processes your repository code with the following privacy measures:</p>
-            <ul>
-                <li>Code is temporarily held in memory for analysis purposes only.</li>
-                <li>All code processing occurs in isolated, secure environments.</li>
-                <li>No repository code is ever persisted to permanent storage by LlamaPReview.</li>
-                <li>Repository content is not used to train AI models.</li>
-            </ul>
-        </div>
-    </div>
-    
-    <div class="policy-section">
-        <h2>3. How We Use Your Information</h2>
-        <p>We use the collected information solely for:</p>
-        <ul>
-            <li>Providing automated code review services through our AI system.</li>
-            <li>Generating and posting review comments on your pull requests.</li>
-            <li>Improving our service based on anonymized usage patterns.</li>
-            <li>Ensuring proper operation and security of the service.</li>
-            <li>Communicating essential service updates.</li>
-        </ul>
-    </div>
-    
-    <div class="policy-section">
-        <h2>4. Data Protection and Processing</h2>
-        <p>We implement comprehensive security measures to protect your data:</p>
-        <ul>
-            <li>End-to-end encryption for all data in transit.</li>
-            <li>Secure, ephemeral processing environments for code analysis hosted on AWS.</li>
-            <li>Regular security audits and updates.</li>
-            <li>Strict access controls and authentication mechanisms.</li>
-            <li>Compliance with GitHub's security best practices.</li>
-        </ul>
 
-        <div class="important-notice">
-            <strong>AI Model Usage and Data Processing Transparency:</strong>
-            <p>LlamaPReview currently provides automated review for public open-source repositories. In all cases, repository content is used only to generate the review and is <strong>never used for training AI models</strong>.</p>
-            <ul>
-                <li><strong>For Public (Open-Source) Repositories:</strong> Repository content may be processed by AI providers used by the public LlamaPReview service, including DeepSeek and selected supporting providers, to generate review output.</li>
-                <li><strong>For Private Repositories:</strong> Free review service is paused from <strong>May 1, 2026 00:00:00 UTC</strong>.</li>
-            </ul>
-            <p>We expect our providers to process repository content only for the requested review task and not to use it for model training.</p>
-        </div>
+    <div class="policy-section">
+        <p><strong>Last updated: August 10, 2026</strong></p>
+        <p>This page describes how the official hosted LlamaPReview GitHub App and website handle data. Self-hosted deployments are operated by their deployers and are outside this policy.</p>
     </div>
-    
+
+    <div class="policy-section">
+        <h2>1. Eligible public pull requests</h2>
+        <p>When an eligible public pull-request event arrives with a valid GitHub webhook signature, LlamaPReview may handle:</p>
+        <ul>
+            <li>GitHub App installation, repository, pull-request, delivery, and exact-head identifiers needed to run and recover the review;</li>
+            <li>selected public repository content used as review evidence, with provenance and coverage records;</li>
+            <li>prompts built from that evidence and generated provider output;</li>
+            <li>the projected main review, inline requests, and optional sanitized Mermaid diagram;</li>
+            <li>provider usage, token, model-identity, and cost-accounting records; and</li>
+            <li>operational run state, artifacts, traces, and logs within the periods below.</li>
+        </ul>
+    </div>
+
+    <div class="policy-section">
+        <h2>2. Private-repository event boundary</h2>
+        <div class="important-notice">
+            <strong>New private-repository events stop before product processing.</strong>
+            <p>The hosted service verifies the webhook signature and parses only the minimum event and visibility fields. If the repository is private, it returns a generic acknowledgement and discards the payload. It does not create a durable product record, call DeepSeek, invoke the Pipeline, call GitHub product APIs, or log repository or pull-request identity for that event.</p>
+        </div>
+        <p>This is the current boundary for new events. It does not mean historical private-repository records from earlier operation were deleted. Those records were deliberately left untouched; no launch cleanup, export, migration, or backfill was run over them.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>3. Processing and service providers</h2>
+        <p><strong>GitHub.</strong> The GitHub App receives signed pull-request webhooks, retrieves public repository evidence, and publishes eligible reviews to the exact verified head.</p>
+        <p><strong>AWS.</strong> Webhook receipt, Pipeline processing, product storage, logging, and alarms run in the AWS Singapore region. LlamaPReview uses Lambda, DynamoDB, S3, CloudWatch, and IAM.</p>
+        <p><strong>DeepSeek.</strong> For eligible public pull requests, selected public evidence, prompts, and generated output are sent to DeepSeek's API for engineering judgment. Those requests leave the AWS environment for DeepSeek processing.</p>
+        <p>DeepSeek documents default on-disk API context caching, normally cleared within hours to days once unused. Its public Open Platform terms do not provide a categorical no-training assurance or one fixed overall retention period for all API data. Read <a href="https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html">DeepSeek's Open Platform terms</a> and <a href="https://api-docs.deepseek.com/guides/kv_cache/">context-cache documentation</a> for its current statements.</p>
+    </div>
+
+    <div class="policy-section">
+        <h2>4. Storage and security</h2>
+        <ul>
+            <li><strong>S3 public-run artifacts and traces:</strong> private bucket, all public-access blocks enabled, S3-managed encryption at rest, and bucket-owner-enforced object ownership. Versioning is currently disabled.</li>
+            <li><strong>DynamoDB run records:</strong> encryption at rest, point-in-time recovery, and TTL enabled.</li>
+            <li><strong>Lambda environment secrets:</strong> AWS built-in encryption at rest and strict IAM. The official service does not add Secrets Manager, Parameter Store SecureString, or a customer-managed KMS key.</li>
+            <li><strong>Public source and CI:</strong> release artifacts are built deterministically, scanned, checksummed, and attested. Public CI cannot read production configuration or deploy the official service.</li>
+        </ul>
+        <p>This is encryption at rest and access control, not a claim of end-to-end encryption across GitHub, AWS, and DeepSeek.</p>
+    </div>
+
     <div class="policy-section">
         <h2>5. Data Retention</h2>
-        <p>Our data retention policy is designed to minimize data storage:</p>
-        <ul>
-            <li>Repository code: Not stored. Temporarily held in memory for processing only.</li>
-            <li>PR metadata: Retained only while the PR is active.</li>
-            <li>Installation data: Retained only while the app remains installed.</li>
-            <li>Usage analytics: Anonymized after 30 days.</li>
-        </ul>
+        <table>
+            <thead><tr><th>Official-service data</th><th>Configured retention</th></tr></thead>
+            <tbody>
+                <tr><td>DynamoDB public-run records</td><td>30-day TTL; AWS deletion after expiry is asynchronous</td></tr>
+                <tr><td>S3 public-run artifacts</td><td>30 days</td></tr>
+                <tr><td>Full provider trace objects</td><td>7 days</td></tr>
+                <tr><td>Webhook CloudWatch logs</td><td>30 days</td></tr>
+                <tr><td>Pipeline CloudWatch logs</td><td>90 days</td></tr>
+            </tbody>
+        </table>
+        <p>These periods describe LlamaPReview's AWS configuration. DeepSeek controls its own processing and retention under its terms. DynamoDB TTL is an expiry marker, not an immediate deletion guarantee.</p>
     </div>
-    
+
     <div class="policy-section">
-        <h2>6. Third-Party Services (Sub-processors)</h2>
-        <p>LlamaPReview integrates with the following third-party services to function:</p>
-        <ul>
-            <li><strong>GitHub:</strong> For primary platform integration and authentication.</li>
-            <li><strong>Amazon Web Services (AWS):</strong> For all secure, serverless processing and infrastructure, hosted exclusively in the **ap-southeast-1 (Singapore)** region.</li>
-            <li><strong>AI Service Providers:</strong>
-                <ul class="sub-list">
-                    <li><strong>DeepSeek and selected supporting providers:</strong> Used for processing public open-source repository content for review generation.</li>
-                </ul>
-            </li>
-        </ul>
-        <p>Please refer to these services' respective privacy policies for additional information about their data handling practices.</p>
+        <h2>6. Choices and questions</h2>
+        <p>Uninstalling the GitHub App stops new events for that installation. It does not retroactively delete records already created; current public-run records continue through the retention process above.</p>
+        <p>Use <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Discussions</a> for data-handling questions, <a href="https://github.com/JetXu-LLM/LlamaPReview/issues">Issues</a> for a reproducible public-service problem, and the private <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security Policy</a> route for vulnerabilities or sensitive reports. Do not post private source, credentials, provider payloads, installation IDs, or private logs in public channels.</p>
     </div>
-    
+
     <div class="policy-section">
-        <h2>7. Your Rights</h2>
-        <p>Under applicable privacy laws (such as GDPR), you have the right to:</p>
-        <ul>
-            <li>Access your personal information.</li>
-            <li>Request correction or deletion of your data.</li>
-            <li>Restrict or object to processing.</li>
-            <li>Export your data (data portability).</li>
-            <li>Withdraw consent at any time by uninstalling the app.</li>
-        </ul>
-        <p>To exercise these rights, please contact us at Jiantong.xu@foxmail.com.</p>
+        <h2>7. Website data</h2>
+        <p>The website is a static GitHub Pages site. LlamaPReview does not configure a website analytics or tracking script. Requests are still handled by GitHub Pages and external assets may be delivered by their hosts under their own policies.</p>
     </div>
-    
+
     <div class="policy-section">
-        <h2>8. Changes to This Policy</h2>
-        <p>We may update this policy to reflect changes in the service or for legal compliance. Material changes will be reflected on this page.</p>
+        <h2>8. Changes to this policy</h2>
+        <p>This page may change when the service or its observed configuration changes. The date above identifies the current version.</p>
     </div>
-    
-    <div class="policy-section">
-        <h2>9. Contact Us</h2>
-        <p>For any questions about this Privacy Policy or our data practices, please contact us at:</p>
-        <p>Email: <a href="mailto:Jiantong.xu@foxmail.com">Jiantong.xu@foxmail.com</a></p>
-    </div>
-    
+
     <footer>
-        <p>Last updated: April 15, 2026</p>
+        <p><a href="./terms.html">Terms</a> · <a href="./customer_support.html">Support</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview">Source</a></p>
         <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
     </footer>
 </body>

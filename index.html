@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6L3Q4T91BH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6L3Q4T91BH');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LlamaPReview - Public Open-Source AI Code Review</title>
-    <meta name="description" content="LlamaPReview delivers evidence-based, low-noise AI pull request reviews for public open-source repositories. Free reviews for private repositories pause on May 1, 2026 00:00:00 UTC.">
+    <meta name="description" content="LlamaPReview is an open-source, evidence-first pull-request reviewer for public GitHub repositories. Install the hosted App or inspect the source that powers it.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -439,6 +431,36 @@
             font-size: 0.95rem;
             color: #57606a;
         }
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+        .public-note {
+            margin-top: 1rem !important;
+            margin-bottom: 0 !important;
+            font-size: 0.95rem !important;
+            opacity: 0.9;
+        }
+        .section-heading {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto 2rem;
+        }
+        .section-heading p {
+            color: #57606a;
+        }
+        .trust-list {
+            margin: 1.25rem 0 0;
+            padding-left: 1.2rem;
+        }
+        .trust-list li {
+            margin-bottom: 0.65rem;
+        }
         @media (max-width: 968px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -452,9 +474,25 @@
             .service-update-layout {
                 grid-template-columns: 1fr;
             }
+            nav {
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                margin: 0;
+            }
+            nav ul li {
+                margin: 0 0 0.5rem 1rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
-    <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg" />
+    <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg">
 </head>
 <body>
     <header>
@@ -463,158 +501,163 @@
                 <img src="./logo.png" alt="LlamaPReview Logo" height="40">
             </div>
             <ul>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#service-update">Service Update</a></li>
+                <li><a href="#open-source">Open Source</a></li>
+                <li><a href="#features">Why It Is Different</a></li>
                 <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a></li>
-                <li><a href="https://github.com/apps/llamapreview" target="_blank">GitHub App</a></li>
+                <li><a href="https://github.com/JetXu-LLM/LlamaPReview" target="_blank" rel="noopener">Source</a></li>
+                <li><a href="https://github.com/JetXu-LLM/LlamaPReview/discussions" target="_blank" rel="noopener">Community</a></li>
+                <li><a href="https://github.com/apps/llamapreview" target="_blank" rel="noopener">Install</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Evidence-Based AI Code Review for Public Open-Source Repositories</h1>
-                <div class="stats-container">
-                    <div class="stat-item">
-                        <span class="stat-number">4,000+</span>
-                        <span class="stat-label">Active Repositories</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">35,000+</span>
-                        <span class="stat-label">Combined Repository Stars</span>
-                    </div>
-                </div>
-                <p><b>1‑Click install • Zero config • Free for public open-source repositories</b> — Context retrieval + severity gating deliver low-noise, high-impact PR insights you can trust.</p>
+                <span class="eyebrow">Apache-2.0 · Open source</span>
+                <h1>Pull-request reviews you can install, inspect, and verify.</h1>
+                <p>LlamaPReview reviews the exact pull-request head using bounded, sourced evidence and deterministic publication logic. The active Webhook and Pipeline source that powers the hosted service is public.</p>
                 <div class="cta-buttons">
-                    <a href="https://github.com/marketplace/llamapreview" class="cta-button">Install for Public Repos</a>
+                    <a href="https://github.com/apps/llamapreview" class="cta-button">Install GitHub App</a>
+                    <a href="https://github.com/JetXu-LLM/LlamaPReview" class="cta-button secondary">View Source</a>
+                </div>
+                <p class="public-note">The hosted App is free for public repositories and does not review private repositories.</p>
+            </div>
+        </section>
+
+        <section id="open-source" class="pricing">
+            <div class="container">
+                <h2>Open source, actively</h2>
+                <p class="pricing-subtitle">This is not a demo or a mirror. The public repository is the production source.</p>
+                <div class="service-update-layout">
+                    <div class="update-panel">
+                        <h3>Read the reviewer before you trust it</h3>
+                        <p>The Webhook and Pipeline code in <a href="https://github.com/JetXu-LLM/LlamaPReview">JetXu-LLM/LlamaPReview</a> powers the official hosted service under the Apache-2.0 license.</p>
+                        <ul class="update-list">
+                            <li><i class="fas fa-code"></i><span>Inspect how evidence is retrieved, bounded, and tied to an exact commit.</span></li>
+                            <li><i class="fas fa-shield-alt"></i><span>Trace the code-owned safety, accounting, recovery, and publication path.</span></li>
+                            <li><i class="fas fa-users"></i><span>Open an Issue, join a Discussion, or contribute a focused improvement.</span></li>
+                        </ul>
+                        <div class="update-actions">
+                            <a href="https://github.com/JetXu-LLM/LlamaPReview" class="cta-button">Inspect the Source</a>
+                            <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/CONTRIBUTING.md" class="secondary-link">Contributing Guide</a>
+                        </div>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">HOSTED</div>
+                        <h3>Public repositories</h3>
+                        <div class="price">$0 <span class="price-period">for public repositories</span></div>
+                        <p class="description">One production path from a signed webhook to an exact-head GitHub review.</p>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i><span>Evidence with provenance and honest coverage gaps</span></li>
+                            <li><i class="fas fa-check"></i><span>High-confidence inline comments</span></li>
+                            <li><i class="fas fa-check"></i><span>Sanitized Mermaid diagrams when useful</span></li>
+                            <li><i class="fas fa-check"></i><span>Idempotent exact-head publication</span></li>
+                        </ul>
+                        <a href="https://github.com/apps/llamapreview" class="pricing-cta">Install GitHub App</a>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="features" class="features">
             <div class="container">
-                <h2>Key Features</h2>
+                <div class="section-heading">
+                    <h2>Why it is different</h2>
+                    <p>Model judgment stays focused on engineering decisions. Code owns the boundaries that make the result safe to publish.</p>
+                </div>
                 <div class="feature-grid">
                     <div class="feature-item">
                         <i class="fas fa-search"></i>
-                        <h3>Context Retrieval Engine</h3>
-                        <p>Finds related, unchanged code to surface ripple effects early.</p>
+                        <h3>Evidence with boundaries</h3>
+                        <p>Every review uses a bounded set of public, exact-head evidence with provenance. Missing coverage is reported instead of guessed away.</p>
                     </div>
                     <div class="feature-item">
-                        <i class="fas fa-robot"></i>
-                        <h3>Evidence-Backed Findings</h3>
-                        <p>High-priority issues always tie to real changed snippets & confidence.</p>
+                        <i class="fas fa-balance-scale"></i>
+                        <h3>Judgment and publication, separated</h3>
+                        <p>DeepSeek supplies engineering judgment. Deterministic code decides the public shape, safety, placement, and publication identity.</p>
                     </div>
                     <div class="feature-item">
-                        <i class="fab fa-github"></i>
-                        <h3>Native GitHub Experience</h3>
-                        <p>Inline comments plus structured summary (table & diagram when needed).</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-cogs"></i>
-                        <h3>Low-Noise Prioritization</h3>
-                        <p>Deterministic severity gating reduces false positives & review fatigue.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="service-update" class="pricing">
-            <div class="container">
-                <h2>Service Update</h2>
-                <p class="pricing-subtitle">A heartfelt message from the LlamaPReview team.</p>
-
-                <div class="service-update-layout">
-                    <div class="update-panel">
-                        <h3>Thank you for an incredible journey</h3>
-                        <p>When we started LlamaPReview, we wanted to build a better way to review code. Thanks to you, we grew to <strong>527 active subscriptions</strong> and over <strong>4,000 repositories</strong>. Seeing so many developers trust our tool has been one of the most rewarding experiences of our lives.</p>
-                        <p>However, the software landscape is shifting beneath our feet. With the unstoppable wave of "Vibe Coding" and AI-native development workflows, the traditional AI code review SaaS model is rapidly becoming a relic of the past. As individual developers, we feel deeply humbled—and admittedly a bit small—in the face of this massive industry transformation. It has become clear that continuing to build a standalone review SaaS is no longer the right path forward, leaving us with a painful but necessary decision.</p>
-                        <ul class="update-list">
-                            <li><i class="fas fa-clock"></i><span>On <strong>May 1, 2026 00:00:00 UTC</strong>, we will pause free reviews for private repositories.</span></li>
-                            <li><i class="fas fa-code-branch"></i><span><strong>LlamaPReview Advanced</strong> will remain completely free and fully operational for public open-source repositories as our way of giving back.</span></li>
-                            <li><i class="fas fa-heart"></i><span>While this chapter is closing, our passion for building developer tools continues in a new form. If you've enjoyed our work, we would be incredibly honored if you took a moment to look at <a href="https://github.com/JetXu-LLM/DocMason" target="_blank">DocMason</a>, our new open-source project.</span></li>
-                        </ul>
-                        <div class="update-actions">
-                            <a href="https://github.com/JetXu-LLM/DocMason" class="cta-button" target="_blank">Explore DocMason</a>
-                            <a href="https://github.com/marketplace/llamapreview" class="secondary-link">Install for Public Repos</a>
-                        </div>
-                    </div>
-
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">ACTIVE</div>
-                        <h3>Advanced Edition</h3>
-                        <div class="price">
-                            $0
-                            <span class="price-period">for public repositories</span>
-                        </div>
-                        <p class="description">Deep-context analysis for public open-source pull requests, with the same low-noise review focus.</p>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i> <span>Evidence-backed PR reviews</span></li>
-                            <li><i class="fas fa-check"></i> <span>Deeper cross-file reasoning on complex changes</span></li>
-                            <li><i class="fas fa-check"></i> <span>Inline suggestions and Mermaid diagrams when needed</span></li>
-                            <li><i class="fas fa-check"></i> <span>Automatic routing for larger public open-source PRs</span></li>
-                            <li><i class="fas fa-check"></i> <span>No change to the public open-source install flow</span></li>
-                        </ul>
-                        <a href="https://github.com/marketplace/llamapreview" class="pricing-cta">Install from GitHub Marketplace</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="impact" class="impact">
-            <div class="container">
-                <h2>Community Impact</h2>
-                <div class="impact-grid">
-                    <div class="impact-item">
                         <i class="fas fa-code-branch"></i>
-                        <div class="impact-content">
-                            <h3>Growing Developer Adoption</h3>
-                            <p>Trusted by <b>4,000+</b> repositories—from indie libraries to larger projects.</p>
-                        </div>
-                    </div>
-                    <div class="impact-item">
-                        <i class="fas fa-star"></i>
-                        <div class="impact-content">
-                            <h3>Proven at Scale</h3>
-                            <p>Serving codebases with a combined <b>35,000+</b> stars using a deep reasoning engine.</p>
-                        </div>
-                    </div>
-                    <div class="impact-item">
-                        <i class="fas fa-comments"></i>
-                        <div class="impact-content">
-                            <h3>Join the Community</h3>
-                            <p>Discuss ideas & feedback in our <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">GitHub Discussions</a>.</p>
-                        </div>
+                        <h3>Pinned to the exact head</h3>
+                        <p>Admission, rereads, and publication bind to the same pull-request commit. Recovery reuses the prepared request instead of posting blindly.</p>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="how-it-works" class="how-it-works">
             <div class="container">
-                <h2>How It Works</h2>
+                <div class="section-heading">
+                    <h2>How a review works</h2>
+                    <p>One production path, from a signed event to a review on the same verified head.</p>
+                </div>
                 <div class="step-grid">
                     <div class="step-item">
                         <div class="step-number">1</div>
-                        <h3>Install</h3>
-                        <p>Add LlamaPReview via GitHub Marketplace—no config files needed.</p>
+                        <h3>Verify and admit</h3>
+                        <p>Verify the webhook signature, enforce the public-only boundary, and pin the exact pull-request head.</p>
                     </div>
                     <div class="step-item">
                         <div class="step-number">2</div>
-                        <h3>Analyze</h3>
-                        <p>Retrieves related code & evaluates changes with structured severity gating.</p>
+                        <h3>Retrieve evidence</h3>
+                        <p>Gather bounded repository evidence with provenance, coverage, and explicit gaps.</p>
                     </div>
                     <div class="step-item">
                         <div class="step-number">3</div>
-                        <h3>Review</h3>
-                        <p>Generates prioritized findings: inline comments + summary table (diagram if architecture shifts).</p>
+                        <h3>Judge and present</h3>
+                        <p>Use model judgment for causal engineering risk, then compress it into owner actions and placement requests.</p>
                     </div>
                     <div class="step-item">
                         <div class="step-number">4</div>
-                        <h3>Improve</h3>
-                        <p>Act on concise, evidence-backed insights—reduce review cycles & regressions.</p>
+                        <h3>Project and publish</h3>
+                        <p>Sanitize, place, account, recover, and publish idempotently to the exact head that was reviewed.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy" class="impact">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Privacy and trust, plainly</h2>
+                    <p>The hosted service reviews public repositories only. Its active source and data boundaries are inspectable.</p>
+                </div>
+                <div class="impact-grid">
+                    <div class="impact-item">
+                        <i class="fas fa-ban"></i>
+                        <div class="impact-content">
+                            <h3>Private events stop early</h3>
+                            <p>After signature verification and minimum visibility parsing, a private event is acknowledged and discarded before product storage, provider processing, or GitHub mutation.</p>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-database"></i>
+                        <div class="impact-content">
+                            <h3>Public-run retention is stated</h3>
+                            <p>Run records, artifacts, provider traces, and logs follow documented retention windows. Historical private records were not deleted.</p>
+                        </div>
+                    </div>
+                    <div class="impact-item">
+                        <i class="fas fa-external-link-alt"></i>
+                        <div class="impact-content">
+                            <h3>Provider processing is disclosed</h3>
+                            <p>Selected public evidence, prompts, and output are sent to DeepSeek. <a href="./privacy.html">Read the full privacy and retention details.</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="community" class="pricing">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Join the project</h2>
+                    <p>Inspect the source, report a reproducible problem, or help sharpen what useful engineering judgment looks like.</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="https://github.com/JetXu-LLM/LlamaPReview/issues" class="secondary-link">Open an Issue</a>
+                    <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions" class="secondary-link">Join Discussions</a>
+                    <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/CONTRIBUTING.md" class="secondary-link">Contribute</a>
                 </div>
             </div>
         </section>
@@ -623,10 +666,13 @@
         <div class="container">
             <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
             <p>
-                <a href="https://github.com/JetXu-LLM/LlamaPReview-site/discussions" target="_blank">Community</a> |
-                <a href="./customer_support.html">Customer Support</a> |
-                <a href="./privacy.html">Privacy Policy</a> |
-                <a href="https://jetxu-llm.github.io/" target="_blank">About the Author</a>
+                <a href="https://github.com/apps/llamapreview">Install</a> |
+                <a href="https://github.com/JetXu-LLM/LlamaPReview">Source</a> |
+                <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Community</a> |
+                <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security</a> |
+                <a href="./customer_support.html">Support</a> |
+                <a href="./privacy.html">Privacy</a> |
+                <a href="./terms.html">Terms</a>
             </p>
         </div>
     </footer>
