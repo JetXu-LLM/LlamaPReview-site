@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 830" width="900" height="830" role="img" aria-labelledby="t d">
+  <title id="t">How LlamaPReview turns a public pull request into a published review</title>
+  <desc id="d">A signed public GitHub event is admitted at an exact head commit. Code gathers bounded public evidence, DeepSeek supplies engineering judgment, and deterministic code owns projection, placement and exactly-once publication. The result is a public review anyone can inspect, from source anyone can run.</desc>
+
+  <defs>
+    <style>
+      .h    { font: 700 30px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #0f172a; }
+      .sub  { font: 400 20px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #475569; }
+      .name { font: 700 25px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #0f172a; }
+      .det  { font: 400 19px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #52607a; }
+      .tag  { font: 700 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; letter-spacing: .1em; }
+      .num  { font: 700 20px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #ffffff; }
+      .flow { fill: none; stroke: #94a3b8; stroke-width: 3; marker-end: url(#a); }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="830" rx="20" fill="#ffffff"/>
+  <rect x="1" y="1" width="898" height="828" rx="19" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+
+  <text x="48" y="62" class="h">From a public pull request to a review you can audit</text>
+  <text x="48" y="94" class="sub">The model judges the engineering. Code owns every boundary and published byte.</text>
+
+  <rect x="48" y="118" width="16" height="16" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+  <text x="74" y="132" class="tag" fill="#475569">CODE-OWNED</text>
+  <rect x="232" y="118" width="16" height="16" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+  <text x="258" y="132" class="tag" fill="#6d28d9">MODEL-OWNED</text>
+
+  <g>
+    <rect x="48" y="158" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <rect x="48" y="158" width="6" height="100" rx="3" fill="#64748b"/>
+    <circle cx="96" cy="208" r="20" fill="#64748b"/>
+    <text x="96" y="215" class="num" text-anchor="middle">1</text>
+    <text x="136" y="200" class="name">Signed public GitHub event</text>
+    <text x="136" y="230" class="det">Signature verified first. Private-repository events stop here.</text>
+  </g>
+  <path d="M450 258 V286" class="flow"/>
+
+  <g>
+    <rect x="48" y="290" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <rect x="48" y="290" width="6" height="100" rx="3" fill="#64748b"/>
+    <circle cx="96" cy="340" r="20" fill="#64748b"/>
+    <text x="96" y="347" class="num" text-anchor="middle">2</text>
+    <text x="136" y="332" class="name">Exact-head admission and bounded evidence</text>
+    <text x="136" y="362" class="det">Pinned to one commit, with provenance and honest coverage gaps.</text>
+  </g>
+  <path d="M450 390 V418" class="flow"/>
+
+  <g>
+    <rect x="48" y="422" width="804" height="100" rx="14" fill="#f5f3ff" stroke="#a78bfa" stroke-width="2"/>
+    <rect x="48" y="422" width="6" height="100" rx="3" fill="#7c3aed"/>
+    <circle cx="96" cy="472" r="20" fill="#7c3aed"/>
+    <text x="96" y="479" class="num" text-anchor="middle">3</text>
+    <text x="136" y="464" class="name">DeepSeek supplies engineering judgment</text>
+    <text x="136" y="494" class="det">Causal risk, severity, uncertainty, merge posture — nothing else.</text>
+  </g>
+  <path d="M450 522 V550" class="flow"/>
+
+  <g>
+    <rect x="48" y="554" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+    <rect x="48" y="554" width="6" height="100" rx="3" fill="#64748b"/>
+    <circle cx="96" cy="604" r="20" fill="#64748b"/>
+    <text x="96" y="611" class="num" text-anchor="middle">4</text>
+    <text x="136" y="596" class="name">Deterministic projection and publication</text>
+    <text x="136" y="626" class="det">Schema, caps, sanitation, placement, exactly-once on the same head.</text>
+  </g>
+  <path d="M450 654 V682" class="flow"/>
+
+  <g>
+    <rect x="48" y="686" width="804" height="100" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
+    <rect x="48" y="686" width="6" height="100" rx="3" fill="#0f172a"/>
+    <circle cx="96" cy="736" r="20" fill="#0f172a"/>
+    <text x="96" y="743" class="num" text-anchor="middle">5</text>
+    <text x="136" y="728" class="name">A public review, from source you can run</text>
+    <text x="136" y="758" class="det">This repository is the code the hosted service runs. Self-host the same path.</text>
+  </g>
+</svg>
