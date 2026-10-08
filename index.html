@@ -112,8 +112,8 @@
             <p>The app does not review every push. Reviews use GitHub's <code>COMMENT</code> state, not <code>APPROVE</code> or <code>REQUEST_CHANGES</code>, and are not a required merge check.</p>
             <h3>Hosted capacity and limits</h3>
             <div class="capacity">
-                <p>Up to <strong>3 admitted review runs per repository per UTC day</strong>, within a <strong>shared 100-run daily limit</strong>. Capacity counts attempts after deterministic skip checks and before the first paid model call; it does not guarantee three successfully delivered reviews. Same-run retries reuse their admission within the UTC day; retries after rollover need that day's capacity.</p>
-                <p>Over-capacity requests are skipped, not queued for the next day. The first ordinary request over a repository's limit may receive a skip notice; later requests that day stop quietly. The global limit is always silent. <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/CONFIGURATION.md#free-review-capacity">Capacity policy</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">Skip messages</a></p>
+                <p>Free hosted capacity: up to <strong>3 admitted review attempts per repository per UTC day</strong>, within a <strong>shared 100-attempt daily limit</strong>. An attempt does not guarantee a completed review. Over-capacity requests are skipped, not queued.</p>
+                <p><a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/CONFIGURATION.md#free-review-capacity">Capacity policy</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">Failure and skip messages</a></p>
             </div>
             <p>Reviews can miss issues or be wrong; they supplement your tests and review process. Evidence retrieval is bounded, and missing coverage remains a gap.</p>
         </section>
