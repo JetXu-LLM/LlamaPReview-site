@@ -3,787 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LlamaPReview - Public Open-Source AI Code Review</title>
-    <meta name="description" content="LlamaPReview is an open-source, evidence-first pull-request reviewer for public GitHub repositories. Install the hosted App or inspect the source that powers it.">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>LlamaPReview — Open-source pull request review</title>
+    <meta name="description" content="Open-source pull request review for public GitHub repositories. See a real review, install the free GitHub App, or inspect the source.">
+    <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg">
     <style>
-        :root {
-            --primary-color: #0366d6;
-            --secondary-color: #28a745;
-            --background-color: #f6f8fa;
-            --text-color: #24292e;
-            --accent-color: #f59e0b;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin-left: 20px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .hero {
-            text-align: center;
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 680px;
-            margin: 0 auto 2rem;
-        }
-        .cta-button {
-            display: inline-block;
-            background-color: white;
-            color: var(--primary-color);
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-        .cta-button:hover {
-            background-color: #f0f0f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        .features {
-            padding: 4rem 0;
-        }
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .feature-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .feature-item i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        .how-it-works {
-            background-color: white;
-            padding: 4rem 0;
-        }
-        .step-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-        .step-item {
-            text-align: center;
-        }
-        .step-item .step-number {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            line-height: 30px;
-            margin-bottom: 1rem;
-        }
-        footer {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 4rem;
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .feature-grid, .step-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 2rem 0;
-        }
-        .stat-item {
-            text-align: center;
-        }
-        .stat-number {
-            display: block;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        .impact {
-            background-color: #f8f9fa;
-            padding: 4rem 0;
-        }
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .impact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .impact-item i {
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-        .impact-content h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text-color);
-        }
-        .impact-content p {
-            margin: 0;
-            color: #666;
-        }
-        @media (max-width: 768px) {
-            .stats-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        .cta-button.secondary {
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-        }
-        .cta-button.secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .impact-item a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .impact-item a:hover {
-            text-decoration: underline;
-        }
-        footer a {
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Pricing Section Styles */
-        .pricing {
-            padding: 4rem 0;
-            background-color: white;
-        }
-        .pricing h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-        .pricing-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .pricing-card {
-            background: white;
-            border: 2px solid #e1e4e8;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        .pricing-card.featured {
-            border-color: var(--accent-color);
-            box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
-            transform: scale(1.05);
-        }
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-        .pricing-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-color);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-        .pricing-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-        .pricing-card .price {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin: 1rem 0;
-        }
-        .pricing-card .price-period {
-            font-size: 1rem;
-            color: #666;
-            font-weight: normal;
-        }
-        .pricing-card .description {
-            color: #666;
-            margin-bottom: 1.5rem;
-            min-height: 3rem;
-        }
-        .pricing-features {
-            text-align: left;
-            margin: 2rem 0;
-        }
-        .pricing-features li {
-            list-style: none;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-        }
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-        .pricing-features li i {
-            color: var(--secondary-color);
-            margin-top: 0.2rem;
-            flex-shrink: 0;
-        }
-        .pricing-features li.disabled {
-            color: #ccc;
-        }
-        .pricing-features li.disabled i {
-            color: #ccc;
-        }
-        .capacity-note {
-            color: #57606a;
-            font-size: 0.92rem;
-            line-height: 1.55;
-            text-align: left;
-        }
-        .capacity-note a {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
-        .pricing-cta {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.9rem 2rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        .pricing-cta:hover {
-            background-color: #0256c7;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .pricing-card.featured .pricing-cta {
-            background-color: var(--accent-color);
-        }
-        .pricing-card.featured .pricing-cta:hover {
-            background-color: #d97706;
-        }
-        .service-update-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
-            gap: 2rem;
-            align-items: stretch;
-        }
-        .update-panel {
-            background: #f6f8fa;
-            border: 1px solid #d8dee4;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: left;
-        }
-        .update-panel h3 {
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-            font-size: 1.5rem;
-        }
-        .update-panel p {
-            margin-top: 0;
-            color: #57606a;
-        }
-        .update-list {
-            list-style: none;
-            padding: 0;
-            margin: 1.5rem 0 0;
-        }
-        .update-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.85rem;
-            margin-bottom: 1rem;
-            color: #24292e;
-        }
-        .update-list li i {
-            color: var(--primary-color);
-            margin-top: 0.25rem;
-            flex-shrink: 0;
-        }
-        .update-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.75rem;
-        }
-        .secondary-link {
-            display: inline-block;
-            background: white;
-            color: var(--text-color);
-            border: 1px solid #d0d7de;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        .secondary-link:hover {
-            background: #f6f8fa;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-        }
-        .update-note {
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #57606a;
-        }
-        .eyebrow {
-            display: inline-block;
-            margin-bottom: 0.75rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            opacity: 0.9;
-        }
-        .public-note {
-            margin-top: 1rem !important;
-            margin-bottom: 0 !important;
-            font-size: 0.95rem !important;
-            opacity: 0.9;
-        }
-        .section-heading {
-            text-align: center;
-            max-width: 760px;
-            margin: 0 auto 2rem;
-        }
-        .section-heading p {
-            color: #57606a;
-        }
-        .trust-list {
-            margin: 1.25rem 0 0;
-            padding-left: 1.2rem;
-        }
-        .trust-list li {
-            margin-bottom: 0.65rem;
-        }
-        .section-subtitle {
-            color: #57606a;
-        }
-        .review-sample {
-            box-sizing: border-box;
-            max-width: 780px;
-            margin: 0 auto;
-            padding: 1.5rem 1.75rem;
-            background: #ffffff;
-            border: 1px solid #d0d7de;
-            border-left: 4px solid var(--primary-color);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
-        }
-        .review-sample p {
-            margin: 0 0 0.85rem;
-            color: #3d4757;
-            line-height: 1.65;
-        }
-        .review-sample p:last-child {
-            margin-bottom: 0;
-        }
-        .review-sample-title {
-            font-weight: 700;
-            color: #1f2733 !important;
-            font-size: 1.05rem;
-        }
-        .review-sample code {
-            background: #f2f4f8;
-            border-radius: 4px;
-            padding: 0.1rem 0.35rem;
-            font-size: 0.92em;
-        }
-        .review-sample-note {
-            max-width: 780px;
-            margin: 1.25rem auto 0;
-            color: #57606a;
-            font-size: 0.97rem;
-            line-height: 1.65;
-        }
-        .architecture {
-            margin: 0 auto 2.5rem;
-            max-width: 820px;
-        }
-        .architecture img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border: 1px solid #d0d7de;
-            border-radius: 10px;
-            background: #ffffff;
-        }
-        .architecture figcaption {
-            margin-top: 0.85rem;
-            text-align: center;
-            color: #57606a;
-            font-size: 0.95rem;
-        }
-        @media (max-width: 968px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
-            }
-            .service-update-layout {
-                grid-template-columns: 1fr;
-            }
-            nav {
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: flex-end;
-                margin: 0;
-            }
-            nav ul li {
-                margin: 0 0 0.5rem 1rem;
-            }
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero .cta-button {
-                box-sizing: border-box;
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-            }
-            .review-sample {
-                padding: 1.15rem 1.25rem;
-            }
+        :root { color-scheme: light; --ink: #172a40; --muted: #4b6179; --link: #245f9d; --line: #d4dfe9; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: #fff; color: var(--ink); font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; }
+        .container { width: min(880px, calc(100% - 40px)); margin: 0 auto; }
+        a { color: var(--link); text-underline-offset: 3px; }
+        a:hover { text-decoration-thickness: 2px; }
+        a:focus-visible { outline: 3px solid #b1cfeb; outline-offset: 4px; }
+        header { border-bottom: 1px solid var(--line); }
+        nav { display: flex; gap: 24px; align-items: center; justify-content: space-between; padding: 16px 0; }
+        .brand { color: var(--ink); font-size: 20px; font-weight: 750; text-decoration: none; }
+        nav ul { display: flex; flex-wrap: wrap; gap: 22px; list-style: none; padding: 0; margin: 0; font-size: 14px; }
+        nav a { text-decoration: none; }
+        .hero { padding: 40px 0 32px; }
+        .context, .section-label { color: var(--muted); font: 13px/1.6 "SFMono-Regular", Consolas, monospace; }
+        h1 { margin: 14px 0 18px; font-size: clamp(32px, 4.5vw, 44px); line-height: 1.14; letter-spacing: -1px; max-width: 810px; }
+        .intro { font-size: 20px; max-width: 810px; margin: 0 0 22px; }
+        .actions { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; }
+        .button { display: inline-block; padding: 10px 17px; background: var(--link); color: #fff; border: 1px solid var(--link); border-radius: 5px; font-size: 16px; font-weight: 650; text-decoration: none; }
+        .button:hover { background: #1b4d80; }
+        section { scroll-margin-top: 20px; }
+        .section { padding: 32px 0; border-top: 1px solid var(--line); }
+        h2 { font-size: 27px; line-height: 1.3; letter-spacing: -.4px; margin: 6px 0 17px; }
+        h3 { font-size: 20px; margin: 24px 0 8px; }
+        p { margin: 0 0 16px; }
+        .review { margin: 0 0 18px; border: 1px solid #d0d7de; border-radius: 6px; overflow: hidden; }
+        .review header { background: #f6f8fa; padding: 11px 20px; color: #57606a; font-size: 14px; }
+        .review-body { padding: 18px 22px 4px; }
+        .review-body h3 { margin: 0 0 14px; font-size: 21px; }
+        code { font-family: "SFMono-Regular", Consolas, monospace; font-size: .88em; background: #eff2f5; border-radius: 3px; padding: 2px 4px; }
+        .caption { color: var(--muted); font-size: 15px; }
+        figure { margin: 20px 0; }
+        .diagram-scroll { overflow-x: auto; }
+        figure img { display: block; width: 100%; height: auto; }
+        figcaption { color: var(--muted); font-size: 14px; margin-top: 10px; }
+        ol, ul { padding-left: 23px; margin: 14px 0 18px; }
+        li { padding-left: 3px; margin: 7px 0; }
+        .capacity { border-left: 3px solid var(--link); padding: 0 0 0 18px; margin: 20px 0; }
+        footer { margin-top: 24px; padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+        @media (max-width: 600px) {
+            body { font-size: 16px; }
+            nav { align-items: flex-start; gap: 12px; flex-direction: column; }
+            nav ul { gap: 16px; }
+            .hero { padding: 28px 0; }
+            .intro { font-size: 18px; }
+            .section { padding: 26px 0; }
+            .diagram-scroll img { min-width: 760px; }
+            .review-body { padding: 16px 17px 2px; }
+            .context { font-size: 12px; }
         }
     </style>
-    <meta name="google-site-verification" content="hR-wgdwxFYUNFSW3aU6nAfCxt48e6FF5sq04WjV47sg">
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">
-                <img src="./logo.png" alt="LlamaPReview Logo" height="40">
-            </div>
+        <nav class="container" aria-label="Main navigation">
+            <a class="brand" href="./">LlamaPReview</a>
             <ul>
-                <li><a href="#proof">See a Review</a></li>
-                <li><a href="#open-source">Open Source</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="https://github.com/JetXu-LLM/LlamaPReview" target="_blank" rel="noopener">Source</a></li>
-                <li><a href="https://github.com/apps/llamapreview" target="_blank" rel="noopener">Install</a></li>
+                <li><a href="#proof">Real review</a></li>
+                <li><a href="#install">Install</a></li>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="https://github.com/JetXu-LLM/LlamaPReview">Source ↗</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="container">
         <section class="hero">
-            <div class="container">
-                <span class="eyebrow">Apache-2.0 · The production source is public</span>
-                <h1>The pull-request reviewer you can read before you trust it.</h1>
-                <p>LlamaPReview reviews the exact head commit of a pull request using bounded, sourced evidence. The model supplies engineering judgment; deterministic code owns every boundary and every published byte — and all of it is open source.</p>
-                <div class="cta-buttons">
-                    <a href="https://github.com/apps/llamapreview" class="cta-button">Install GitHub App</a>
-                    <a href="https://github.com/JetXu-LLM/LlamaPReview" class="cta-button secondary">Read the Source</a>
-                    <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/HOSTING.md" class="cta-button secondary">Self-host It</a>
-                </div>
-                <p class="public-note">Free for public repositories. Private repositories are never reviewed — their events are discarded before any storage or model call.</p>
+            <p class="context">Free hosted GitHub App · Public repositories only · Apache-2.0 source</p>
+            <h1>Open-source pull request review for public GitHub repositories.</h1>
+            <p class="intro">LlamaPReview reviews a pull request at its exact head commit, explains findings against the code, and reports known gaps in the evidence.</p>
+            <div class="actions">
+                <a class="button" href="https://github.com/marketplace/llamapreview">Install for a public repository</a>
+                <a href="https://github.com/Texarkanine/SumMem/pull/10#pullrequestreview-4978442337">See a real review</a>
+                <a href="https://github.com/JetXu-LLM/LlamaPReview">Read the source</a>
             </div>
         </section>
-
-        <section id="proof" class="features">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>What a review actually says</h2>
-                    <p class="section-subtitle">Evidence-led, and explicit when the evidence runs out.</p>
-                </div>
-                <blockquote class="review-sample">
-                    <p class="review-sample-title">LlamaPReview — Blocking issues found</p>
+        <section id="proof" class="section">
+            <span class="section-label">01 / THE RESULT</span>
+            <h2>A finding you can check against the code</h2>
+            <article class="review" aria-label="Excerpt from a historical public review">
+                <header>Published review excerpt · Texarkanine/SumMem#10</header>
+                <div class="review-body">
+                    <h3>LlamaPReview — Blocking issues found</h3>
                     <p>Do not merge until the nap instruction names the runnable driver path, matching the activation scheme this PR ships; currently the printed instruction tells agents to run <code>summem</code>, not <code>.summem/summem</code>.</p>
                     <p>Exact-head CI remains unresolved (1 pending); no CI-dependent merge-safety claim is made.</p>
-                </blockquote>
-                <p class="review-sample-note">That second sentence is the point. When the evidence does not support a claim, the review declines to make it. Read this review in full on <a href="https://github.com/Texarkanine/SumMem/pull/10#pullrequestreview-4978442337" target="_blank" rel="noopener">Texarkanine/SumMem#10</a>, another on <a href="https://github.com/mmayasaurus/heddle/pull/66#pullrequestreview-4977897488" target="_blank" rel="noopener">mmayasaurus/heddle#66</a>, or read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md" target="_blank" rel="noopener">output contract</a> that defines what it will and will not publish.</p>
-            </div>
+                </div>
+            </article>
+            <p>In this public review, LlamaPReview flagged a mismatch between the command an agent was told to run and the executable path shipped by the PR. It also recorded unresolved CI separately.</p>
+            <p class="caption">One historical example, not a measure of overall accuracy. <a href="https://github.com/Texarkanine/SumMem/pull/10#pullrequestreview-4978442337">Read the full review</a> or <a href="https://github.com/mmayasaurus/heddle/pull/66#pullrequestreview-4977897488">inspect another example</a>.</p>
+            <p>A substantive review summary contains findings, evidence and suggested next steps. Zero or more inline comments appear where findings can be placed safely. An optional diagram can help explain the change. Known evidence gaps remain visible. <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md">Output contract →</a></p>
         </section>
-
-        <section id="open-source" class="pricing">
-            <div class="container">
-                <h2>Open source, actively</h2>
-                <p class="pricing-subtitle">This is not a demo or a mirror. The public repository is the production source.</p>
-                <div class="service-update-layout">
-                    <div class="update-panel">
-                        <h3>Read the reviewer before you trust it</h3>
-                        <p>The Webhook and Pipeline code in <a href="https://github.com/JetXu-LLM/LlamaPReview">JetXu-LLM/LlamaPReview</a> powers the official hosted service under the Apache-2.0 license.</p>
-                        <ul class="update-list">
-                            <li><i class="fas fa-code"></i><span>Inspect how evidence is retrieved, bounded, and tied to an exact commit.</span></li>
-                            <li><i class="fas fa-shield-alt"></i><span>Trace the code-owned safety, accounting, recovery, and publication path.</span></li>
-                            <li><i class="fas fa-users"></i><span>Open an Issue, join a Discussion, or contribute a focused improvement.</span></li>
-                        </ul>
-                        <div class="update-actions">
-                            <a href="https://github.com/JetXu-LLM/LlamaPReview" class="cta-button">Inspect the Source</a>
-                            <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/CONTRIBUTING.md" class="secondary-link">Contributing Guide</a>
-                        </div>
-                    </div>
-                    <div class="pricing-card featured">
-                        <div class="pricing-badge">HOSTED</div>
-                        <h3>Public repositories</h3>
-                        <div class="price">$0 <span class="price-period">for public repositories</span></div>
-                        <p class="description">One production path from a signed webhook to an exact-head GitHub review.</p>
-                        <ul class="pricing-features">
-                            <li><i class="fas fa-check"></i><span>Evidence with provenance and honest coverage gaps</span></li>
-                            <li><i class="fas fa-check"></i><span>High-confidence inline comments</span></li>
-                            <li><i class="fas fa-check"></i><span>Sanitized Mermaid diagrams when useful</span></li>
-                            <li><i class="fas fa-check"></i><span>Idempotent exact-head publication</span></li>
-                        </ul>
-                        <p class="capacity-note">Hosted capacity is 3 reviews per repository per UTC day, with a shared 100-review daily circuit breaker. The first ordinary pull request over a repository's daily limit may receive one skip notice; later pull requests that day and head successors stop silently. The global circuit breaker is always silent. Read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/CONFIGURATION.md#free-review-capacity">capacity policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">skip-message contract</a>.</p>
-                        <p class="capacity-note">The public self-hosting reference disables the official hosted quota by default. Self-hosters supply their own DeepSeek account and pay their own AWS and provider costs. See the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/HOSTING.md#self-hosted-aws-deployment">self-hosting boundary</a>.</p>
-                        <a href="https://github.com/apps/llamapreview" class="pricing-cta">Install GitHub App</a>
-                    </div>
-                </div>
+        <section id="install" class="section">
+            <span class="section-label">02 / GET STARTED</span>
+            <h2>Install, open a PR, read the review</h2>
+            <figure>
+                <div class="diagram-scroll"><img src="./assets/quickstart.svg" width="1200" height="400" alt="Install the GitHub App, select a public repository, open a non-draft PR or mark a draft ready, then read the review on GitHub. Over-capacity requests are skipped, not queued." loading="lazy"></div>
+                <figcaption>On small screens, scroll the diagram. The steps are also listed below.</figcaption>
+            </figure>
+            <ol>
+                <li><a href="https://github.com/marketplace/llamapreview">Install the GitHub App</a> and select the public repositories you want reviewed.</li>
+                <li>Open a non-draft pull request, or mark a draft ready for review.</li>
+                <li>Read the review on GitHub and check its findings against the code.</li>
+            </ol>
+            <p>The app does not review every push. Reviews use GitHub's <code>COMMENT</code> state, not <code>APPROVE</code> or <code>REQUEST_CHANGES</code>, and are not a required merge check.</p>
+            <h3>Hosted capacity and limits</h3>
+            <div class="capacity">
+                <p>Up to <strong>3 admitted review runs per repository per UTC day</strong>, within a <strong>shared 100-run daily limit</strong>. Capacity counts attempts after deterministic skip checks and before the first paid model call; it does not guarantee three successfully delivered reviews. Same-run retries reuse their admission within the UTC day; retries after rollover need that day's capacity.</p>
+                <p>Over-capacity requests are skipped, not queued for the next day. The first ordinary request over a repository's limit may receive a skip notice; later requests that day stop quietly. The global limit is always silent. <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/CONFIGURATION.md#free-review-capacity">Capacity policy</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">Skip messages</a></p>
             </div>
+            <p>Reviews can miss issues or be wrong; they supplement your tests and review process. Evidence retrieval is bounded, and missing coverage remains a gap.</p>
         </section>
-
-        <section id="features" class="features">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>Why it is different</h2>
-                    <p>Model judgment stays focused on engineering decisions. Code owns the boundaries that make the result safe to publish.</p>
-                </div>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <i class="fas fa-search"></i>
-                        <h3>Evidence with boundaries</h3>
-                        <p>Every review uses a bounded set of public, exact-head evidence with provenance. Missing coverage is reported instead of guessed away.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-balance-scale"></i>
-                        <h3>Judgment and publication, separated</h3>
-                        <p>DeepSeek supplies engineering judgment. Deterministic code decides the public shape, safety, placement, and publication identity.</p>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-code-branch"></i>
-                        <h3>Pinned to the exact head</h3>
-                        <p>Admission, rereads, and publication bind to the same pull-request commit. Recovery reuses the prepared request instead of posting blindly.</p>
-                    </div>
-                </div>
-            </div>
+        <section id="how-it-works" class="section">
+            <span class="section-label">03 / THE IMPLEMENTATION</span>
+            <h2>How one review is made</h2>
+            <p>The model supplies engineering judgment. Code enforces evidence boundaries, output validation, safe placement and publication.</p>
+            <figure>
+                <div class="diagram-scroll"><img src="./assets/architecture.svg" width="1200" height="720" alt="Signed eligible events pass exact-head admission and capacity gates. Route and PFR guide bounded evidence retrieval; Deep and Final provide judgment and presentation. Code validates and publishes a prepared GitHub COMMENT review. Recovery reconciles the same request without returning to model judgment." loading="lazy"></div>
+                <figcaption>The reviewed head is checked again through the pipeline and before publication. Recovery reuses the saved request.</figcaption>
+            </figure>
+            <p id="open-source">This repository contains the Webhook and Pipeline source used by the hosted service, under Apache-2.0. Inspect the <a href="https://github.com/JetXu-LLM/LlamaPReview/tree/main/lambdas">evidence retrieval, output validation and publication path</a>, or read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/ARCHITECTURE.md">architecture documentation</a>.</p>
         </section>
-
-        <section id="how-it-works" class="how-it-works">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>How a review works</h2>
-                    <p>One production path, from a signed event to a review on the same verified head.</p>
-                </div>
-                <figure class="architecture">
-                    <img src="./assets/architecture.svg" alt="From a public pull request to a review you can audit: a signed public GitHub event, exact-head admission and bounded evidence, DeepSeek engineering judgment, deterministic projection and publication, and a public review from source you can run." loading="lazy">
-                    <figcaption>The model owns one step. Code owns the other four — and you can read all five.</figcaption>
-                </figure>
-                <div class="step-grid">
-                    <div class="step-item">
-                        <div class="step-number">1</div>
-                        <h3>Verify and admit</h3>
-                        <p>Verify the webhook signature, enforce the public-only boundary, and pin the exact pull-request head.</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">2</div>
-                        <h3>Retrieve evidence</h3>
-                        <p>Gather bounded repository evidence with provenance, coverage, and explicit gaps.</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">3</div>
-                        <h3>Judge and present</h3>
-                        <p>Use model judgment for causal engineering risk, then compress it into owner actions and placement requests.</p>
-                    </div>
-                    <div class="step-item">
-                        <div class="step-number">4</div>
-                        <h3>Project and publish</h3>
-                        <p>Sanitize, place, account, recover, and publish idempotently to the exact head that was reviewed.</p>
-                    </div>
-                </div>
-            </div>
+        <section id="self-host" class="section">
+            <span class="section-label">04 / RUN YOUR OWN</span>
+            <h2>Self-host in your AWS account</h2>
+            <p>Run the public-repository review pipeline in your own AWS account. Supply your own GitHub App and model-provider credentials, and pay your own AWS and provider costs.</p>
+            <p>The reference Terraform stack disables hosted quota counters by default and leaves one-time head succession enabled. New source installations default to an OpenRouter GPT-6 Luna max trial with <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/QUALITY_UPGRADE.md#validation-boundaries">documented qualification limits</a>. The existing DeepSeek profile remains selectable. This source default is separate from the hosted service, which uses DeepSeek.</p>
+            <p><a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/HOSTING.md#self-hosted-aws-deployment">Self-hosting guide →</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/RELEASE_VERIFICATION.md">Verify a release</a></p>
         </section>
-
-        <section id="privacy" class="impact">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>Privacy and trust, plainly</h2>
-                    <p>The hosted service reviews public repositories only. Its active source and data boundaries are inspectable.</p>
-                </div>
-                <div class="impact-grid">
-                    <div class="impact-item">
-                        <i class="fas fa-ban"></i>
-                        <div class="impact-content">
-                            <h3>Private events stop early</h3>
-                            <p>After signature verification and minimum visibility parsing, a private event is acknowledged and discarded before product storage, provider processing, or GitHub mutation.</p>
-                        </div>
-                    </div>
-                    <div class="impact-item">
-                        <i class="fas fa-database"></i>
-                        <div class="impact-content">
-                            <h3>Public-run retention is stated</h3>
-                            <p>Run records, artifacts, provider traces, and logs follow documented retention windows. Historical private records were not deleted.</p>
-                        </div>
-                    </div>
-                    <div class="impact-item">
-                        <i class="fas fa-external-link-alt"></i>
-                        <div class="impact-content">
-                            <h3>Provider processing is disclosed</h3>
-                            <p>Selected public evidence, prompts, and output are sent to DeepSeek. <a href="./privacy.html">Read the full privacy and retention details.</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section id="privacy" class="section">
+            <h2>Data and privacy</h2>
+            <p>New private-repository events stop after signature verification and minimum visibility parsing, before durable product storage, provider calls or GitHub product API calls. For eligible public requests, selected evidence, prompts and output are sent to DeepSeek.</p>
+            <p>Hosted public-run records and artifacts expire in 30 days; full provider traces in 7. Expiry is not an immediate deletion guarantee. <a href="./privacy.html">Read the Privacy Policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/SECURITY.md">security model</a>.</p>
         </section>
-
-        <section id="community" class="pricing">
-            <div class="container">
-                <div class="section-heading">
-                    <h2>Join the project</h2>
-                    <p>Inspect the source, report a reproducible problem, or help sharpen what useful engineering judgment looks like.</p>
-                </div>
-                <div class="cta-buttons">
-                    <a href="https://github.com/JetXu-LLM/LlamaPReview/issues" class="secondary-link">Open an Issue</a>
-                    <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions" class="secondary-link">Join Discussions</a>
-                    <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/CONTRIBUTING.md" class="secondary-link">Contribute</a>
-                </div>
-            </div>
+        <section id="community" class="section">
+            <h2>Work on the reviewer</h2>
+            <p>Found a reproducible problem or have a public review worth discussing? <a href="https://github.com/JetXu-LLM/LlamaPReview/issues">Open an Issue</a>, <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">join Discussions</a>, or read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/CONTRIBUTING.md">contributing guide</a>.</p>
+            <a class="button" href="https://github.com/marketplace/llamapreview">Install for a public repository</a>
         </section>
     </main>
     <footer>
         <div class="container">
-            <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
-            <p>
-                <a href="https://github.com/apps/llamapreview">Install</a> |
-                <a href="https://github.com/JetXu-LLM/LlamaPReview">Source</a> |
-                <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Community</a> |
-                <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security</a> |
-                <a href="./customer_support.html">Support</a> |
-                <a href="./privacy.html">Privacy</a> |
+            <p>© 2024–2026 LlamaPReview</p>
+            <div class="footer-links">
+                <a href="https://github.com/marketplace/llamapreview">Install</a>
+                <a href="https://github.com/JetXu-LLM/LlamaPReview">Source</a>
+                <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security</a>
+                <a href="./customer_support.html">Support</a>
+                <a href="./privacy.html">Privacy</a>
                 <a href="./terms.html">Terms</a>
-            </p>
+            </div>
         </div>
     </footer>
-    <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
