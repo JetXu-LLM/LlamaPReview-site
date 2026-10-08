@@ -26,7 +26,7 @@
     <text x="588" y="224" font-size="19" font-weight="600" fill="#61718b">OR</text>
     <g fill="none" stroke="#4775aa" stroke-width="2.2" marker-end="url(#arrow)"><path d="M261 201H287"/><path d="M538 201H564"/><path d="M883 201H909"/></g>
     <path d="M32 312H1168" stroke="#d4dfe9"/>
-    <text x="32" y="345" font-size="20" fill="#334d68">Hosted capacity: up to 3 admitted runs per repository; 100 shared per UTC day.</text>
+    <text x="32" y="345" font-size="20" fill="#334d68">Hosted capacity per UTC day: up to 3 admitted runs per repository; 100 shared.</text>
     <text x="32" y="376" font-size="20" fill="#334d68">Over-capacity requests are skipped, not queued. A run is an attempt, not a delivery guarantee.</text>
   </g>
 </svg>

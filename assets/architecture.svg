@@ -52,7 +52,7 @@
     <text x="52" y="537" fill="#f0f6fd" font-size="25" font-weight="700">GitHub review · COMMENT state</text>
     <text x="52" y="570" fill="#d5e2ef" font-size="20">Main summary · 0 or more safe inline comments · Optional diagram</text>
     <text x="52" y="599" fill="#bed0e3" font-size="20">Findings and known gaps stay visible in the pull request.</text>
-    <path d="M1117 586V628H873V587" fill="none" stroke="#7cdbb6" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#publish-arrow)"/>
+    <path d="M1117 586V605H873V587" fill="none" stroke="#7cdbb6" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#publish-arrow)"/>
     <rect x="863" y="614" width="275" height="48" rx="4" fill="#101e2d"/>
     <text x="995" y="633" fill="#7cdbb6" font-size="19" text-anchor="middle">Recovery / reconciliation</text>
     <text x="995" y="657" fill="#bed0e3" font-size="19" text-anchor="middle">same prepared request</text>
