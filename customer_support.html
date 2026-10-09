@@ -40,7 +40,7 @@
         <h2>Frequently Asked Questions</h2>
 
         <h3>How do I install LlamaPReview?</h3>
-        <p>Install the <a href="https://github.com/apps/llamapreview">LlamaPReview GitHub App</a> and grant it access to the public repositories you want reviewed.</p>
+        <p>Install the <a href="https://github.com/marketplace/llamapreview">LlamaPReview GitHub App</a> and grant it access to the public repositories you want reviewed.</p>
 
         <h3>Does the hosted service review private repositories?</h3>
         <p>No. After verifying the webhook signature and parsing the minimum visibility fields, the hosted service generically acknowledges and discards a private-repository event. It creates no durable product record, calls no model provider, and makes no GitHub product API call for that event.</p>
@@ -49,7 +49,7 @@
         <p>A review runs for an eligible public pull-request event with a valid webhook signature. Opening a non-draft pull request or marking a draft ready for review are the supported entry points. Every admitted run is pinned to the pull request's exact head commit.</p>
 
         <h3>How much hosted review capacity is available?</h3>
-        <p>The official hosted service admits up to 3 reviews per repository per UTC day. A shared 100-review daily circuit breaker protects the service's total provider budget. The first ordinary pull request over a repository's daily limit may receive one skip notice; later pull requests that day and head successors stop silently. The global circuit breaker is always silent. Read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/CONFIGURATION.md#free-review-capacity">capacity policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">skip-message contract</a>.</p>
+        <p>The official hosted service admits up to 3 review runs per repository per UTC day, within a shared 100-run daily limit. Capacity counts attempts admitted after deterministic skip checks and before the first paid model call, not successfully delivered reviews. Over-capacity requests are skipped, not queued for the next day. The first ordinary pull request over a repository's daily limit may receive one skip notice; later pull requests that day and head successors stop silently. The global circuit breaker is always silent. Read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/CONFIGURATION.md#free-review-capacity">capacity policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">skip-message contract</a>.</p>
 
         <h3>Where is the source, and where should I report a bug?</h3>
         <p>The active source is <a href="https://github.com/JetXu-LLM/LlamaPReview">JetXu-LLM/LlamaPReview</a>. Use <a href="https://github.com/JetXu-LLM/LlamaPReview/issues">Issues</a> for reproducible bugs and concrete work items. Use <a href="https://github.com/JetXu-LLM/LlamaPReview/discussions">Discussions</a> for questions, ideas, and public review examples.</p>
@@ -61,7 +61,7 @@
         <p>Follow the repository's <a href="https://github.com/JetXu-LLM/LlamaPReview/security/policy">Security Policy</a>. Do not file a public Issue for a vulnerability.</p>
 
         <h3>Can I self-host LlamaPReview?</h3>
-        <p>Yes. The repository contains a generic AWS reference for the same public-repository-only Webhook and Pipeline path. The reference disables the official hosted quota by default. Self-hosters supply their own GitHub App, DeepSeek credentials, and AWS account, and pay their own DeepSeek and AWS costs. The current reference does not include a private-repository mode. Read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/v0.1.4/docs/HOSTING.md#self-hosted-aws-deployment">self-hosting boundary</a>.</p>
+        <p>Yes. The repository contains a generic AWS reference for the same public-repository-only Webhook and Pipeline path. The reference disables the official hosted quota by default. Self-hosters supply their own GitHub App, model-provider credentials, and AWS account, and pay their own provider and AWS costs. The reference leaves one-time head succession enabled. New source installations default to an OpenRouter GPT-6 Luna max trial with <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/QUALITY_UPGRADE.md#validation-boundaries">documented qualification limits</a>; the existing DeepSeek profile remains selectable. This source default is separate from the hosted service, which uses DeepSeek. The current reference does not include a private-repository mode. Read the <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/HOSTING.md#self-hosted-aws-deployment">self-hosting boundary</a>.</p>
     </div>
 
     <div class="support-section">
@@ -75,7 +75,7 @@
     </div>
 
     <footer>
-        <p>Last updated: August 22, 2026</p>
+        <p>Last updated: October 8, 2026</p>
         <p>&copy; 2024-2026 LlamaPReview. All rights reserved.</p>
     </footer>
 </body>

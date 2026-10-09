@@ -1,79 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 830" width="900" height="830" role="img" aria-labelledby="t d">
-  <title id="t">How LlamaPReview turns a public pull request into a published review</title>
-  <desc id="d">A signed public GitHub event is admitted at an exact head commit. Code gathers bounded public evidence, DeepSeek supplies engineering judgment, and deterministic code owns projection, placement and exactly-once publication. The result is a public review anyone can inspect, from source anyone can run.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<title id="title">LlamaPReview: bounded evidence to a published COMMENT review</title>
+<desc id="desc">An admitted public pull request is pinned to head H. Model-assisted Route and PFR guide selection of bounded repository evidence at H, preserving sources and explicit gaps. Deep judges risks, evidence, and uncertainty. Final presents findings, actions, and placement requests. Code validates schema, sanitizes, places, and rechecks head and lifecycle. An immutable prepared request is published as a GitHub COMMENT review. Recovery and reconciliation reuse that saved request only, without returning to model judgment.</desc>
+<defs>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#8CA6B9" stroke-opacity=".055" stroke-width="1"/></pattern>
+ <marker id="blueArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L11 6L1 11Z" fill="#79BDF0"/></marker>
+ <marker id="purpleArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L11 6L1 11Z" fill="#BCA0E8"/></marker>
+ <marker id="mintArrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L11 6L1 11Z" fill="#79D8BB"/></marker>
+ <style>
+  text{font-family:Arial,Helvetica,sans-serif;fill:#E8EFF8;font-size:24px}
+  .secondary{fill:#B5C7D8}.muted{fill:#8196A9}.small{font-size:22px}.label{font-size:24px;font-weight:600}.section{font-size:21px;font-weight:600;letter-spacing:2px}.blue{fill:#79BDF0}.purple{fill:#BCA0E8}.mint{fill:#79D8BB}
+  .flow{fill:none;stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+  .dim{fill:none;stroke:#5F7387;stroke-width:2;stroke-dasharray:5 7}
+ </style>
+</defs>
+<rect width="1600" height="900" rx="20" fill="#111E2B"/>
+<rect width="1600" height="900" rx="20" fill="url(#grid)"/>
+<!-- Heading and categorical legend -->
+<text x="64" y="79" style="font-size:38px;font-weight:700">LlamaPReview</text>
+<text x="64" y="121" class="secondary">Bounded evidence. Model judgment. Controlled publication.</text>
+<path d="M1250 78h28" stroke="#79BDF0" stroke-width="4"/><text x="1290" y="85" class="small secondary">Code</text>
+<path d="M1390 78h28" stroke="#BCA0E8" stroke-width="4"/><text x="1430" y="85" class="small secondary">Model</text>
+<!-- Head identity is an annotation rail, deliberately without arrows -->
+<path d="M104 214V189H1541V578H1327V675" fill="none" stroke="#647F96" stroke-width="1.7"/>
+<path d="M575 189V344" fill="none" stroke="#647F96" stroke-width="1.7" stroke-dasharray="4 7"/>
+<rect x="561" y="172" width="358" height="34" fill="#111E2B"/>
+<text x="740" y="197" text-anchor="middle" class="small secondary">Pinned identity · same head H</text>
+<circle cx="104" cy="214" r="5" fill="#79BDF0"/>
+<circle cx="575" cy="344" r="5" fill="#79BDF0"/>
+<circle cx="1327" cy="675" r="4" fill="#79BDF0"/>
+<!-- Evidence source: tree branches depict selected and unread files -->
+<text x="64" y="254" class="label">Admitted public PR</text>
+<text x="64" y="290" class="secondary small">Repository @ H</text>
+<path d="M104 329V512M104 348H145M104 407H145" class="flow" stroke="#79BDF0"/>
+<path d="M104 512V577M104 466H145M104 525H145M104 577H145" class="dim"/>
+<circle cx="104" cy="329" r="7" fill="#79BDF0"/>
+<path d="M145 332h141v33H145zM145 390h141v33H145z" fill="#192F43" stroke="#79BDF0" stroke-width="1.5"/>
+<text x="158" y="356" class="small blue">PR diff</text>
+<text x="158" y="414" style="font-size:21px" class="blue">Related code</text>
+<path d="M145 449h141v33H145zM145 508h141v33H145zM145 560h97v33H145z" class="dim"/>
+<text x="161" y="474" class="small muted">…</text><text x="161" y="533" class="small muted">…</text><text x="161" y="585" class="small muted">…</text>
+<!-- Selection combines lit evidence into one bounded packet -->
+<path d="M286 348H312Q328 348 328 365V405M286 407H328M328 405H385" class="flow" stroke="#79BDF0" marker-end="url(#blueArrow)"/>
 
-  <defs>
-    <style>
-      .h    { font: 700 30px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #0f172a; }
-      .sub  { font: 400 20px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #475569; }
-      .name { font: 700 25px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #0f172a; }
-      .det  { font: 400 19px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #52607a; }
-      .tag  { font: 700 15px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; letter-spacing: .1em; }
-      .num  { font: 700 20px ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #ffffff; }
-      .flow { fill: none; stroke: #94a3b8; stroke-width: 3; marker-end: url(#a); }
-    </style>
-    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M0 0 L10 5 L0 10 z" fill="#94a3b8"/>
-    </marker>
-  </defs>
+<text x="397" y="270" class="purple label">Route + PFR</text>
+<text x="397" y="300" class="small secondary">Guide selection</text>
+<path d="M480 315H347V382" fill="none" stroke="#BCA0E8" stroke-width="1.8" stroke-dasharray="4 5" marker-end="url(#purpleArrow)"/>
+<path d="M415 350h-22v186h22M574 350h22v186h-22" fill="none" stroke="#79BDF0" stroke-width="2.5"/>
+<text x="428" y="389" class="label">Facts</text><path d="M427 408H560" stroke="#79BDF0" stroke-width="3"/>
+<text x="428" y="449" class="label">Sources</text><path d="M427 467H520" stroke="#79BDF0" stroke-width="3"/>
+<text x="428" y="510" class="secondary">Gaps</text><path d="M427 526H560" stroke="#8196A9" stroke-width="2" stroke-dasharray="5 6"/>
+<text x="491" y="581" text-anchor="middle" class="blue small">Bounded context</text>
+<path d="M190 609V643H492V609" fill="none" stroke="#52697D" stroke-width="1.7"/>
+<text x="341" y="683" text-anchor="middle" class="secondary">Unread ≠ absent</text>
+<!-- Judgment: model nodes, distinguished from code paths -->
+<path d="M598 432H650" class="flow" stroke="#79BDF0" marker-end="url(#blueArrow)"/>
+<path d="M742 341L832 432L742 523L652 432Z" fill="#25233B" stroke="#BCA0E8" stroke-width="2.5"/>
+<text x="742" y="442" text-anchor="middle" style="font-size:30px;font-weight:600">Deep</text>
+<text x="742" y="567" text-anchor="middle" class="purple label">Judge</text>
+<text x="742" y="602" text-anchor="middle" class="secondary small">Risks · evidence</text>
+<text x="742" y="632" text-anchor="middle" class="secondary small">uncertainty</text>
+<path d="M834 432H875" class="flow" stroke="#BCA0E8" marker-end="url(#purpleArrow)"/>
+<!-- Final fans judgment into structured presentation requests -->
+<path d="M894 338H1040L1071 369V550H894Z" fill="#25233B" stroke="#BCA0E8" stroke-width="2.3"/>
+<path d="M1040 338V369H1071" fill="none" stroke="#BCA0E8" stroke-width="2"/>
+<text x="914" y="383" style="font-size:30px;font-weight:600">Final</text>
+<path d="M914 401H1048" stroke="#655B82" stroke-width="1"/>
+<text x="914" y="433" class="small">Findings</text>
+<text x="914" y="468" class="small">Actions</text>
+<text x="914" y="503" class="small">Placement</text>
+<text x="914" y="531" class="small">requests</text>
+<text x="982" y="586" text-anchor="middle" class="purple label">Present</text>
 
-  <rect width="900" height="830" rx="20" fill="#ffffff"/>
-  <rect x="1" y="1" width="898" height="828" rx="19" fill="none" stroke="#e2e8f0" stroke-width="2"/>
-
-  <text x="48" y="62" class="h">From a public pull request to a review you can audit</text>
-  <text x="48" y="94" class="sub">The model judges the engineering. Code owns every boundary and published byte.</text>
-
-  <rect x="48" y="118" width="16" height="16" rx="4" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
-  <text x="74" y="132" class="tag" fill="#475569">CODE-OWNED</text>
-  <rect x="232" y="118" width="16" height="16" rx="4" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
-  <text x="258" y="132" class="tag" fill="#6d28d9">MODEL-OWNED</text>
-
-  <g>
-    <rect x="48" y="158" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-    <rect x="48" y="158" width="6" height="100" rx="3" fill="#64748b"/>
-    <circle cx="96" cy="208" r="20" fill="#64748b"/>
-    <text x="96" y="215" class="num" text-anchor="middle">1</text>
-    <text x="136" y="200" class="name">Signed public GitHub event</text>
-    <text x="136" y="230" class="det">Signature verified first. Private-repository events stop here.</text>
-  </g>
-  <path d="M450 258 V286" class="flow"/>
-
-  <g>
-    <rect x="48" y="290" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-    <rect x="48" y="290" width="6" height="100" rx="3" fill="#64748b"/>
-    <circle cx="96" cy="340" r="20" fill="#64748b"/>
-    <text x="96" y="347" class="num" text-anchor="middle">2</text>
-    <text x="136" y="332" class="name">Exact-head admission and bounded evidence</text>
-    <text x="136" y="362" class="det">Pinned to one commit, with provenance and honest coverage gaps.</text>
-  </g>
-  <path d="M450 390 V418" class="flow"/>
-
-  <g>
-    <rect x="48" y="422" width="804" height="100" rx="14" fill="#f5f3ff" stroke="#a78bfa" stroke-width="2"/>
-    <rect x="48" y="422" width="6" height="100" rx="3" fill="#7c3aed"/>
-    <circle cx="96" cy="472" r="20" fill="#7c3aed"/>
-    <text x="96" y="479" class="num" text-anchor="middle">3</text>
-    <text x="136" y="464" class="name">DeepSeek supplies engineering judgment</text>
-    <text x="136" y="494" class="det">Causal risk, severity, uncertainty, merge posture — nothing else.</text>
-  </g>
-  <path d="M450 522 V550" class="flow"/>
-
-  <g>
-    <rect x="48" y="554" width="804" height="100" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
-    <rect x="48" y="554" width="6" height="100" rx="3" fill="#64748b"/>
-    <circle cx="96" cy="604" r="20" fill="#64748b"/>
-    <text x="96" y="611" class="num" text-anchor="middle">4</text>
-    <text x="136" y="596" class="name">Deterministic projection and publication</text>
-    <text x="136" y="626" class="det">Schema, caps, sanitation, placement, exactly-once on the same head.</text>
-  </g>
-  <path d="M450 654 V682" class="flow"/>
-
-  <g>
-    <rect x="48" y="686" width="804" height="100" rx="14" fill="#f8fafc" stroke="#0f172a" stroke-width="2"/>
-    <rect x="48" y="686" width="6" height="100" rx="3" fill="#0f172a"/>
-    <circle cx="96" cy="736" r="20" fill="#0f172a"/>
-    <text x="96" y="743" class="num" text-anchor="middle">5</text>
-    <text x="136" y="728" class="name">A public review, from source you can run</text>
-    <text x="136" y="758" class="det">This repository is the code the hosted service runs. Self-host the same path.</text>
-  </g>
+<path d="M1073 432H1127" class="flow" stroke="#BCA0E8" marker-end="url(#purpleArrow)"/>
+<!-- Code gate: flow can exit only after validation and current-state checks -->
+<path d="M1164 329H1470V528H1164M1145 350V507" fill="none" stroke="#79BDF0" stroke-width="2.5"/>
+<text x="1190" y="368" class="blue label">Code validation</text>
+<path d="M1189 387H1443M1189 438H1443" stroke="#3F586E" stroke-width="1.2"/>
+<text x="1190" y="419" class="small">Schema · sanitize · place</text>
+<text x="1190" y="482" class="small secondary">Prepare publication</text>
+<path d="M1342 528V572H1158V628" class="flow" stroke="#79D8BB" marker-end="url(#mintArrow)"/>
+<!-- Prepared immutable body is visibly the only input to publication -->
+<path d="M1006 637h280v109h-280z" fill="#172F32" stroke="#79D8BB" stroke-width="2.4"/>
+<path d="M1015 645h262v93h-262z" fill="none" stroke="#437E72" stroke-width="1"/>
+<text x="1028" y="678" class="mint label">Prepared request</text>
+<text x="1028" y="715" class="small">Body · H · inline</text>
+<text x="1008" y="622" class="small secondary">Immutable</text>
+<path d="M1288 693H1307" class="flow" stroke="#79D8BB" marker-end="url(#mintArrow)"/>
+<path d="M1346 693H1368" class="flow" stroke="#79D8BB" marker-end="url(#mintArrow)"/>
+<path d="M1327 676L1344 693L1327 710L1310 693Z" fill="#172F32" stroke="#79BDF0" stroke-width="2"/>
+<rect x="1275" y="584" width="256" height="31" fill="#111E2B"/>
+<text x="1402" y="608" text-anchor="middle" class="small secondary">Recheck H + lifecycle</text>
+<path d="M1327 710V763" fill="none" stroke="#8196A9" stroke-width="1.7"/>
+<text x="1351" y="780" class="small secondary">Changed → stop</text>
+<path d="M1372 632H1520V734H1421L1391 759V734H1372Z" fill="#172F32" stroke="#79D8BB" stroke-width="2.4"/>
+<text x="1446" y="674" text-anchor="middle" class="small secondary">GitHub review</text>
+<text x="1446" y="712" text-anchor="middle" class="mint label">COMMENT</text>
+<!-- Recovery stays in publication. It never reconnects to model nodes. -->
+<path d="M1520 710H1543V839H1157V749" fill="none" stroke="#79D8BB" stroke-width="2" stroke-dasharray="6 6" marker-end="url(#mintArrow)"/>
+<rect x="1195" y="823" width="260" height="32" fill="#111E2B"/>
+<text x="1325" y="846" text-anchor="middle" class="small mint">Reconcile · same request</text>
 </svg>

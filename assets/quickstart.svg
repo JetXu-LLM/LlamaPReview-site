@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400" role="img" aria-labelledby="title desc">
+  <title id="title">Start a review on GitHub</title>
+  <desc id="desc">Install the GitHub App, select a public repository, open a non-draft pull request or mark a draft ready for review, then read the review on GitHub. Hosted capacity counts admitted attempts: up to 3 per repository and 100 shared per UTC day. Over-capacity requests are skipped, not queued.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 1 9 5 0 9" fill="none" stroke="#4775aa" stroke-width="1.7"/></marker>
+  </defs>
+  <rect width="1200" height="400" rx="12" fill="#f8fafc"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+    <text x="32" y="48" font-size="30" font-weight="700" fill="#172a40">Start a review on GitHub</text>
+    <text x="32" y="81" font-size="20" fill="#4b6179">The result stays in your pull request.</text>
+    <g fill="#fff" stroke="#cbd7e4" stroke-width="1.5">
+      <rect x="32" y="117" width="227" height="168" rx="8"/>
+      <rect x="291" y="117" width="245" height="168" rx="8"/>
+      <rect x="568" y="117" width="313" height="168" rx="8"/>
+      <rect x="913" y="117" width="255" height="168" rx="8"/>
+    </g>
+    <g fill="#245f9d"><circle cx="61" cy="148" r="16"/><circle cx="320" cy="148" r="16"/><circle cx="597" cy="148" r="16"/><circle cx="942" cy="148" r="16"/></g>
+    <g font-size="18" font-weight="700" fill="#fff" text-anchor="middle"><text x="61" y="154">1</text><text x="320" y="154">2</text><text x="597" y="154">3</text><text x="942" y="154">4</text></g>
+    <g fill="#172a40" font-size="23" font-weight="650">
+      <text x="52" y="200">Install the</text><text x="52" y="231">GitHub App</text>
+      <text x="311" y="200">Select a public</text><text x="311" y="231">repository</text>
+      <text x="588" y="190">Open a non-draft PR</text>
+      <text x="588" y="256">Mark a draft ready</text>
+      <text x="933" y="200">Read the review</text><text x="933" y="231">on GitHub</text>
+    </g>
+    <text x="588" y="224" font-size="19" font-weight="600" fill="#61718b">OR</text>
+    <g fill="none" stroke="#4775aa" stroke-width="2.2" marker-end="url(#arrow)"><path d="M261 201H287"/><path d="M538 201H564"/><path d="M883 201H909"/></g>
+    <path d="M32 312H1168" stroke="#d4dfe9"/>
+    <text x="32" y="345" font-size="20" fill="#334d68">Hosted capacity per UTC day: up to 3 admitted runs per repository; 100 shared.</text>
+    <text x="32" y="376" font-size="20" fill="#334d68">Over-capacity requests are skipped, not queued. A run is an attempt, not a delivery guarantee.</text>
+  </g>
+</svg>
