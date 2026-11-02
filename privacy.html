@@ -49,8 +49,8 @@
     <h1>LlamaPReview Privacy Policy</h1>
 
     <div class="policy-section">
-        <p><strong>Last updated: August 12, 2026</strong></p>
-        <p>This page describes how the official hosted LlamaPReview GitHub App and website handle data. Self-hosted deployments are operated by their deployers and are outside this policy.</p>
+        <p><strong>Last updated: November 2, 2026</strong></p>
+        <p>This page describes how the official hosted LlamaPReview GitHub App and website handle data. Self-hosted deployments are operated by their deployers and are outside this policy. This update corrects the hosted provider disclosure to direct OpenAI. The AWS storage and retention settings below were last verified on August 12, 2026 and were not revalidated as part of this update.</p>
     </div>
 
     <div class="policy-section">
@@ -70,7 +70,7 @@
         <h2>2. Private-repository event boundary</h2>
         <div class="important-notice">
             <strong>New private-repository events stop before product processing.</strong>
-            <p>The hosted service verifies the webhook signature and parses only the minimum event and visibility fields. If the repository is private, it returns a generic acknowledgement and discards the payload. It does not create a durable product record, call DeepSeek, invoke the Pipeline, call GitHub product APIs, or log repository or pull-request identity for that event.</p>
+            <p>The hosted service verifies the webhook signature and parses only the minimum event and visibility fields. If the repository is private, it returns a generic acknowledgement and discards the payload. It does not create a durable product record, call a model provider, invoke the Pipeline, call GitHub product APIs, or log repository or pull-request identity for that event.</p>
         </div>
         <p>This is the current boundary for new events. It does not mean historical private-repository records from earlier operation were deleted. Those records were deliberately left untouched; no launch cleanup, export, migration, or backfill was run over them.</p>
     </div>
@@ -79,25 +79,28 @@
         <h2>3. Processing and service providers</h2>
         <p><strong>GitHub.</strong> The GitHub App receives signed pull-request webhooks, retrieves public repository evidence, and publishes eligible reviews to the exact verified head.</p>
         <p><strong>AWS.</strong> Webhook receipt, Pipeline processing, product storage, logging, and alarms run in the AWS Singapore region. LlamaPReview uses Lambda, DynamoDB, S3, CloudWatch, and IAM.</p>
-        <p><strong>DeepSeek.</strong> For eligible public pull requests, selected public evidence, prompts, and generated output are sent to DeepSeek's API for engineering judgment. Those requests leave the AWS environment for DeepSeek processing.</p>
-        <p>DeepSeek documents default on-disk API context caching, normally cleared within hours to days once unused. Its public Open Platform terms do not provide a categorical no-training assurance or one fixed overall retention period for all API data. Read <a href="https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html">DeepSeek's Open Platform terms</a> and <a href="https://api-docs.deepseek.com/guides/kv_cache/">context-cache documentation</a> for its current statements.</p>
+        <p><strong>OpenAI.</strong> For eligible public pull requests, selected public repository evidence and prompts are sent directly to the OpenAI API for engineering judgment. Generated responses can be included in subsequent review-stage requests. These requests leave LlamaPReview's AWS environment; the AWS region does not establish where OpenAI processes them.</p>
+        <p>The direct adapter uses the Responses API with <code>store=false</code> and <code>background=false</code>. These settings do not guarantee zero retention. OpenAI states that API data is not used for model training by default unless the account opts in to sharing. Its default abuse-monitoring logs may contain prompts, responses and related metadata for up to 30 days, with longer retention possible for legal or safety reasons. Account-level controls and exceptions apply; this policy does not assert Zero Data Retention for the hosted account.</p>
+        <p>The hosted review path uses prompt caching. Its 30-minute cache setting is a minimum reuse lifetime, not a deletion deadline. OpenAI documents a maximum 24-hour retention period for encrypted prompt-cache state, separate from abuse-monitoring logs and LlamaPReview's AWS retention. Read OpenAI's current <a href="https://developers.openai.com/api/docs/guides/your-data">API data controls</a> and <a href="https://developers.openai.com/api/docs/guides/prompt-caching">prompt-caching documentation</a>.</p>
+        <p>Changing providers does not retroactively delete data previously processed by another provider. Self-hosted provider settings, including OpenRouter and DeepSeek, do not describe the current official hosted service.</p>
     </div>
 
     <div class="policy-section">
         <h2>4. Storage and security</h2>
+        <p>The following AWS controls describe the configuration verified on August 12, 2026.</p>
         <ul>
-            <li><strong>S3 public-run artifacts and traces:</strong> private bucket, all public-access blocks enabled, S3-managed encryption at rest, and bucket-owner-enforced object ownership. Versioning is currently disabled.</li>
+            <li><strong>S3 public-run artifacts and traces:</strong> private bucket, all public-access blocks enabled, S3-managed encryption at rest, and bucket-owner-enforced object ownership. Versioning was disabled at that verification.</li>
             <li><strong>DynamoDB run records:</strong> encryption at rest, point-in-time recovery, and TTL enabled.</li>
             <li><strong>Lambda environment secrets:</strong> AWS built-in encryption at rest and strict IAM. The official service does not add Secrets Manager, Parameter Store SecureString, or a customer-managed KMS key.</li>
             <li><strong>Public source and CI:</strong> release artifacts are built deterministically, scanned, checksummed, and attested. Public CI cannot read production configuration or deploy the official service.</li>
         </ul>
-        <p>This is encryption at rest and access control, not a claim of end-to-end encryption across GitHub, AWS, and DeepSeek.</p>
+        <p>This is encryption at rest and access control, not a claim of end-to-end encryption across GitHub, AWS, and OpenAI.</p>
     </div>
 
     <div class="policy-section">
         <h2>5. Data Retention</h2>
         <table>
-            <thead><tr><th>Official-service data</th><th>Configured retention</th></tr></thead>
+            <thead><tr><th>Official-service data</th><th>Last verified retention (August 12, 2026)</th></tr></thead>
             <tbody>
                 <tr><td>DynamoDB public-run records</td><td>30-day TTL; AWS deletion after expiry is asynchronous</td></tr>
                 <tr><td>S3 public-run artifacts</td><td>30 days</td></tr>
@@ -106,7 +109,7 @@
                 <tr><td>Pipeline CloudWatch logs</td><td>90 days</td></tr>
             </tbody>
         </table>
-        <p>These periods describe LlamaPReview's AWS configuration. DeepSeek controls its own processing and retention under its terms. DynamoDB TTL is an expiry marker, not an immediate deletion guarantee.</p>
+        <p>These periods describe the last verified LlamaPReview AWS configuration, not a newly verified snapshot. OpenAI controls its own processing and retention under its API policies and the applicable account settings. DynamoDB TTL is an expiry marker, not an immediate deletion guarantee.</p>
     </div>
 
     <div class="policy-section">

@@ -112,7 +112,7 @@
             <p>The app does not review every push. Reviews use GitHub's <code>COMMENT</code> state, not <code>APPROVE</code> or <code>REQUEST_CHANGES</code>, and are not a required merge check.</p>
             <h3>Hosted capacity and limits</h3>
             <div class="capacity">
-                <p>Free hosted capacity: up to <strong>3 admitted review attempts per repository per UTC day</strong>, within a <strong>shared 100-attempt daily limit</strong>. An attempt does not guarantee a completed review. Over-capacity requests are skipped, not queued.</p>
+                <p>Free hosted capacity: up to <strong>3 admitted review attempts per repository per UTC day</strong>, subject to <strong>shared daily capacity and available model budget</strong>. These are admission limits, not a guaranteed allocation or a promise of a completed review. Over-capacity requests are skipped, not queued.</p>
                 <p><a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/CONFIGURATION.md#free-review-capacity">Capacity policy</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/REVIEW_OUTPUT.md#failure-and-skip-messages">Failure and skip messages</a></p>
             </div>
             <p>Reviews can miss issues or be wrong; they supplement your tests and review process. Evidence retrieval is bounded, and missing coverage remains a gap.</p>
@@ -131,13 +131,13 @@
             <span class="section-label">04 / RUN YOUR OWN</span>
             <h2>Self-host in your AWS account</h2>
             <p>Run the public-repository review pipeline in your own AWS account. Supply your own GitHub App and model-provider credentials, and pay your own AWS and provider costs.</p>
-            <p>The reference Terraform stack disables hosted quota counters by default and leaves one-time head succession enabled. New source installations default to an OpenRouter GPT-6 Luna max trial with <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/QUALITY_UPGRADE.md#validation-boundaries">documented qualification limits</a>. The existing DeepSeek profile remains selectable. This source default is separate from the hosted service, which uses DeepSeek.</p>
+            <p>The reference Terraform stack disables hosted quota counters by default and leaves one-time head succession enabled. New source installations default to an OpenRouter GPT-6 Luna max trial with <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/QUALITY_UPGRADE.md#validation-boundaries">documented qualification limits</a>. The existing DeepSeek profile remains selectable. Direct OpenAI is also an explicit option with a <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/DIRECT_OPENAI_PROFILE.md">stage profile</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/DIRECT_OPENAI_BUDGET.md">verified budget policy</a>. These source choices are separate from the hosted service, which uses the OpenAI API directly.</p>
             <p><a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/HOSTING.md#self-hosted-aws-deployment">Self-hosting guide →</a> · <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/RELEASE_VERIFICATION.md">Verify a release</a></p>
         </section>
         <section id="privacy" class="section">
             <h2>Data and privacy</h2>
-            <p>New private-repository events stop after signature verification and minimum visibility parsing, before durable product storage, provider calls or GitHub product API calls. For eligible public requests, selected evidence, prompts and output are sent to DeepSeek.</p>
-            <p>Hosted public-run records and artifacts expire in 30 days; full provider traces in 7. Expiry is not an immediate deletion guarantee. <a href="./privacy.html">Read the Privacy Policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/SECURITY.md">security model</a>.</p>
+            <p>New private-repository events stop after signature verification and minimum visibility parsing, before durable product storage, provider calls or GitHub product API calls. For eligible public requests, selected evidence and prompts are sent directly to OpenAI; generated responses can be included in subsequent review-stage requests.</p>
+            <p>The Privacy Policy separates OpenAI processing from LlamaPReview’s AWS storage and dates the last verified retention settings. Neither prompt caching nor <code>store=false</code> is a zero-retention guarantee. <a href="./privacy.html">Read the Privacy Policy</a> and <a href="https://github.com/JetXu-LLM/LlamaPReview/blob/main/docs/SECURITY.md">security model</a>.</p>
         </section>
         <section id="community" class="section">
             <h2>Work on the reviewer</h2>
